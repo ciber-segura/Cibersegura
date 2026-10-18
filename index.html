@@ -1,0 +1,2337 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Aprende a proteger a niños y adultos mayores al utilizar celulares, aplicaciones e Internet.">
+<title>CiberSegura | Ciberseguridad para todos</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+    --azul: #102b46;
+    --azul2: #075bb5;
+    --azul3: #0877e8;
+    --dorado: #c9a961;
+    --dorado-claro: #e3c88a;
+    --celeste: #eaf5ff;
+    --verde: #16a085;
+    --verde2: #2ba98f;
+    --rojo: #d64568;
+    --rosa: #e07a91;
+    --texto: #34465a;
+    --gris: #637386;
+    --blanco: #fff;
+    --fondo: #f5f8fc;
+    --ease: cubic-bezier(.19,1,.22,1);
+    --sombra-suave: 0 8px 28px rgba(16,43,70,.08);
+    --sombra: 0 18px 45px rgba(16,43,70,.15);
+    --sombra-fuerte: 0 30px 70px rgba(16,43,70,.22);
+}
+* { box-sizing: border-box; margin: 0; padding: 0; scroll-behavior: smooth; }
+body {
+    font-family: 'Inter', Arial, sans-serif;
+    background: var(--fondo); color: var(--texto);
+    line-height: 1.7; overflow-x: hidden;
+}
+h1, h2, h3, .logo { font-family: 'Playfair Display', serif; }
+img { display: block; width: 100%; object-fit: cover; }
+a { text-decoration: none; }
+.contenedor { width: 90%; max-width: 1200px; margin: auto; }
+section { padding: 85px 0; scroll-margin-top: 85px; position: relative; }
+h2 { font-size: clamp(28px, 4vw, 42px); color: var(--azul); font-weight: 700; letter-spacing: -.5px; }
+.encabezado-seccion { text-align: center; max-width: 820px; margin: 0 auto 50px; }
+.encabezado-seccion h2::after {
+    content: ""; display: block; width: 60px; height: 2px;
+    background: linear-gradient(90deg, transparent, var(--dorado), transparent);
+    margin: 22px auto 0;
+}
+.encabezado-seccion p { margin-top: 18px; color: var(--gris); font-size: 17px; font-weight: 300; }
+.etiqueta { color: var(--dorado); font-size: 12px; letter-spacing: 4px; font-weight: 600; text-transform: uppercase; }
+#progreso {
+    position: fixed; top: 0; left: 0; height: 3px; width: 0%;
+    background: linear-gradient(90deg, var(--azul3), var(--dorado), var(--verde2));
+    z-index: 2000; box-shadow: 0 0 12px rgba(201,169,97,.6);
+    transition: width .1s linear;
+}
+header {
+    background: rgba(16,43,70,.95); backdrop-filter: blur(14px);
+    position: sticky; top: 0; z-index: 1000;
+    box-shadow: 0 4px 18px rgba(0,0,0,.12);
+    border-bottom: 1px solid rgba(201,169,97,.2);
+}
+.navbar { display: flex; justify-content: space-between; align-items: center; min-height: 78px; gap: 20px; }
+.logo {
+    color: white; font-size: 23px; font-weight: 700;
+    display: flex; align-items: center; gap: 6px; transition: transform .3s var(--ease);
+}
+.logo:hover { transform: scale(1.04); }
+.logo span {
+    background: linear-gradient(90deg, #4dd9c0, #60e3cb, #4dd9c0);
+    background-size: 200% auto;
+    -webkit-background-clip: text; background-clip: text; color: transparent;
+    animation: brillo 3s linear infinite;
+}
+@keyframes brillo { to { background-position: 200% center; } }
+nav { display: flex; gap: 14px; align-items: center; flex-wrap: wrap; }
+nav a {
+    color: rgba(255,255,255,.85); font-size: 12px;
+    position: relative; padding: 6px 0; transition: color .3s;
+}
+nav a::after {
+    content: ""; position: absolute; bottom: 0; left: 50%;
+    height: 1px; width: 0; background: var(--dorado);
+    transition: width .4s var(--ease), left .4s var(--ease);
+}
+nav a:hover { color: var(--dorado-claro); }
+nav a:hover::after { width: 100%; left: 0; }
+.menu-btn { display: none; color: white; background: none; border: none; font-size: 28px; cursor: pointer; }
+.hero {
+    background: linear-gradient(110deg, #e9f6ff 0%, #fff 55%, #d9f3eb 100%);
+    background-size: 200% 200%; animation: moverFondo 18s ease infinite;
+    padding: 0; overflow: hidden; position: relative;
+    min-height: 620px; display: flex; align-items: center;
+}
+@keyframes moverFondo {
+    0%, 100% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+}
+.orbe { position: absolute; border-radius: 50%; filter: blur(80px); opacity: .4; pointer-events: none; z-index: 0; }
+.orbe-1 { width: 420px; height: 420px; background: radial-gradient(circle, #b8d4f0, transparent); top: -100px; left: -120px; animation: flotar 14s ease-in-out infinite; }
+.orbe-2 { width: 360px; height: 360px; background: radial-gradient(circle, #a8ebd8, transparent); bottom: -120px; right: -80px; animation: flotar 18s ease-in-out infinite reverse; }
+@keyframes flotar {
+    0%, 100% { transform: translate(0,0) scale(1); }
+    50% { transform: translate(40px, -30px) scale(1.08); }
+}
+.hero-grid {
+    display: grid; grid-template-columns: 1fr 1fr;
+    align-items: center; gap: 45px;
+    position: relative; z-index: 1; padding: 40px 0; width: 100%;
+}
+.hero-texto { padding: 50px 0; }
+.hero h1 {
+    color: var(--azul); font-size: clamp(36px, 5vw, 58px);
+    margin: 18px 0; font-weight: 700;
+    letter-spacing: -1px; line-height: 1.15;
+    animation: entrarArriba .9s var(--ease) .1s both;
+}
+.hero h1 span {
+    background: linear-gradient(120deg, var(--azul3), var(--verde2), var(--azul3));
+    background-size: 200% auto;
+    -webkit-background-clip: text; background-clip: text; color: transparent;
+    animation: brillo 5s linear infinite; font-style: italic;
+}
+.hero-texto p {
+    font-size: 16.5px; margin-bottom: 22px; color: #4a5568;
+    font-weight: 300; max-width: 520px; animation: entrarArriba .9s var(--ease) both;
+}
+.hero-texto p:nth-of-type(1) { animation-delay: .3s; }
+.hero-texto p:nth-of-type(2) { animation-delay: .5s; }
+.hero-texto .etiqueta { animation: entrarArriba .9s var(--ease) both; }
+.hero-texto .boton { animation: entrarArriba .9s var(--ease) .7s both; }
+@keyframes entrarArriba {
+    from { opacity: 0; transform: translateY(35px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+.video-wrap {
+    position: relative; border-radius: 20px; overflow: hidden;
+    box-shadow: var(--sombra-fuerte); isolation: isolate;
+}
+.video-wrap img {
+    display: block; width: 100%; height: 100%; object-fit: cover;
+    animation: kenBurns 22s ease-in-out infinite alternate, respirar 8s ease-in-out infinite;
+    filter: saturate(1.1) contrast(1.05) brightness(1.02);
+}
+@keyframes kenBurns {
+    0% { transform: scale(1) translate(0, 0); }
+    100% { transform: scale(1.18) translate(-2.5%, -2%); }
+}
+@keyframes respirar {
+    0%, 100% { filter: saturate(1.1) contrast(1.05) brightness(1.02); }
+    50% { filter: saturate(1.22) contrast(1.08) brightness(1.06); }
+}
+.video-wrap::before {
+    content: ""; position: absolute; inset: 0;
+    background: linear-gradient(135deg, rgba(16,43,70,.18), transparent 45%, rgba(201,169,97,.15));
+    background-size: 200% 200%;
+    animation: moverGradiente 8s ease infinite;
+    z-index: 2; pointer-events: none;
+}
+@keyframes moverGradiente {
+    0%, 100% { background-position: 0% 0%; }
+    50% { background-position: 100% 100%; }
+}
+.video-wrap::after {
+    content: ""; position: absolute; top: -50%; left: -100%;
+    width: 40%; height: 200%;
+    background: linear-gradient(100deg, transparent, rgba(255,255,255,.45), transparent);
+    transform: rotate(25deg);
+    animation: barrido1 8s ease-in-out infinite;
+    z-index: 3; pointer-events: none;
+}
+@keyframes barrido1 { 0%, 60% { left: -100%; } 100% { left: 200%; } }
+.video-wrap .luz-dorada {
+    position: absolute; top: -50%; left: -100%;
+    width: 25%; height: 200%;
+    background: linear-gradient(100deg, transparent, rgba(201,169,97,.5), transparent);
+    transform: rotate(-15deg);
+    animation: barrido2 10s ease-in-out infinite 2s;
+    z-index: 4; pointer-events: none;
+}
+@keyframes barrido2 { 0%, 65% { left: -100%; } 100% { left: 200%; } }
+.video-wrap .vignette {
+    position: absolute; inset: 0;
+    background: radial-gradient(circle at center, transparent 45%, rgba(16,43,70,.35) 100%);
+    animation: respirarVignette 6s ease-in-out infinite;
+    z-index: 5; pointer-events: none;
+}
+@keyframes respirarVignette {
+    0%, 100% { opacity: .6; }
+    50% { opacity: .9; }
+}
+.video-wrap .particula {
+    position: absolute; width: 4px; height: 4px;
+    background: var(--dorado-claro); border-radius: 50%;
+    box-shadow: 0 0 10px var(--dorado);
+    z-index: 6; pointer-events: none;
+    animation: flotarParticula linear infinite;
+}
+@keyframes flotarParticula {
+    0% { transform: translate(0, 100px) scale(0); opacity: 0; }
+    20% { opacity: 1; }
+    100% { transform: translate(var(--dx), -120px) scale(1.4); opacity: 0; }
+}
+.hero-imagen-wrap {
+    height: 500px; border-radius: 22px 0 0 22px;
+    box-shadow: 0 40px 90px rgba(16,43,70,.28);
+    animation: entrarDerecha 1.4s var(--ease) .3s both;
+}
+@keyframes entrarDerecha {
+    from { opacity: 0; transform: translateX(80px) scale(.94); }
+    to { opacity: 1; transform: translateX(0) scale(1); }
+}
+.svg-flotante {
+    position: absolute; bottom: -25px; left: -35px;
+    width: 170px; height: 170px; z-index: 10;
+    filter: drop-shadow(0 12px 30px rgba(16,43,70,.35));
+    animation: flotarSVG 5s ease-in-out infinite;
+}
+@keyframes flotarSVG {
+    0%, 100% { transform: translateY(0) rotate(-3deg); }
+    50% { transform: translateY(-14px) rotate(3deg); }
+}
+.boton {
+    display: inline-block; padding: 14px 28px;
+    background: linear-gradient(135deg, var(--azul3), var(--azul2));
+    color: white; border-radius: 10px;
+    font-weight: 600; font-size: 14.5px;
+    transition: all .4s var(--ease);
+    border: none; cursor: pointer;
+    box-shadow: 0 10px 28px rgba(8,119,232,.28);
+    position: relative; overflow: hidden;
+}
+.boton::before {
+    content: ""; position: absolute; top: 0; left: -100%;
+    width: 100%; height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,.4), transparent);
+    transition: left .7s;
+}
+.boton:hover::before { left: 100%; }
+.boton:hover { transform: translateY(-4px); box-shadow: 0 18px 40px rgba(8,119,232,.4); }
+.boton-verde { background: linear-gradient(135deg, var(--verde), var(--verde2)); }
+.beneficios {
+    background: white; padding: 30px 0;
+    box-shadow: 0 4px 25px rgba(16,43,70,.05);
+    border-top: 1px solid rgba(201,169,97,.15);
+    border-bottom: 1px solid rgba(201,169,97,.15);
+}
+.beneficios-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 25px; text-align: center; }
+.beneficios-grid > div { padding: 15px; transition: transform .4s var(--ease); }
+.beneficios-grid > div:hover { transform: translateY(-6px); }
+.beneficios-grid strong { display: block; color: var(--azul); font-size: 17px; font-family: 'Playfair Display', serif; margin-bottom: 4px; }
+.beneficios-grid span { font-size: 13.5px; color: var(--gris); font-weight: 300; }
+.revelar { opacity: 0; transform: translateY(45px); transition: opacity 1s var(--ease), transform 1s var(--ease); }
+.revelar.visible { opacity: 1; transform: translateY(0); }
+.revelar-d1 { transition-delay: .12s; }
+.revelar-d2 { transition-delay: .24s; }
+.revelar-d3 { transition-delay: .36s; }
+.tarjetas { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; }
+.tarjeta {
+    background: white; border-radius: 16px; overflow: hidden;
+    box-shadow: var(--sombra-suave); border: 1px solid #e8eef4;
+    transition: transform .6s var(--ease), box-shadow .6s var(--ease);
+    position: relative;
+}
+.tarjeta:hover { transform: translateY(-10px); box-shadow: var(--sombra-fuerte); }
+.tarjeta-img-wrap { position: relative; height: 220px; overflow: hidden; }
+.tarjeta-img-wrap img {
+    height: 100%; width: 100%; object-fit: cover;
+    animation: kenBurns 18s ease-in-out infinite alternate, respirar 7s ease-in-out infinite;
+    transition: transform 1.4s var(--ease), filter 1s var(--ease);
+}
+.tarjeta:hover .tarjeta-img-wrap img {
+    animation-play-state: paused;
+    transform: scale(1.15); filter: saturate(1.2) contrast(1.1) brightness(1.05);
+}
+.tarjeta-img-wrap::before {
+    content: ""; position: absolute; inset: 0;
+    background: linear-gradient(180deg, transparent 55%, rgba(16,43,70,.5));
+    z-index: 2; pointer-events: none;
+}
+.tarjeta-img-wrap::after {
+    content: ""; position: absolute; top: -50%; left: -100%;
+    width: 60%; height: 200%;
+    background: linear-gradient(100deg, transparent, rgba(255,255,255,.5), transparent);
+    transform: rotate(20deg); z-index: 3; pointer-events: none;
+}
+.tarjeta:hover .tarjeta-img-wrap::after { left: 200%; transition: left 1.2s var(--ease); }
+.tarjeta-contenido { padding: 26px; position: relative; z-index: 1; }
+.tarjeta h3 { color: var(--azul); font-size: 21px; margin-bottom: 12px; font-weight: 700; }
+.tarjeta p { font-size: 14.5px; color: #4a5568; font-weight: 300; }
+.icono { font-size: 30px; margin-bottom: 10px; display: inline-block; transition: transform .4s var(--ease); }
+.tarjeta:hover .icono { animation: brincar .8s var(--ease); }
+@keyframes brincar {
+    0%, 100% { transform: translateY(0) rotate(0); }
+    30% { transform: translateY(-8px) rotate(-8deg); }
+    60% { transform: translateY(-4px) rotate(8deg); }
+}
+.lista { list-style: none; margin-top: 15px; }
+.lista li {
+    padding: 8px 0; border-bottom: 1px solid #edf1f5;
+    font-size: 14px; transition: padding-left .3s, color .3s;
+    color: #4a5568; font-weight: 300;
+}
+.lista li:last-child { border-bottom: none; }
+.lista li::before {
+    content: "✓"; color: var(--dorado); font-weight: bold;
+    margin-right: 10px; display: inline-block; transition: transform .3s;
+}
+.lista li:hover { padding-left: 8px; color: var(--azul); }
+.lista li:hover::before { transform: scale(1.3); }
+.fondo-blanco { background: white; }
+.dos-columnas { display: grid; grid-template-columns: 1fr 1fr; align-items: center; gap: 50px; }
+.foto-grande-wrap {
+    position: relative; height: 460px; border-radius: 18px; overflow: hidden;
+    box-shadow: var(--sombra);
+    clip-path: inset(0 100% 0 0);
+    transition: clip-path 1.4s var(--ease), box-shadow .6s var(--ease);
+}
+.foto-grande-wrap.visible { clip-path: inset(0 0 0 0); }
+.foto-grande-wrap:hover { box-shadow: var(--sombra-fuerte); }
+.foto-grande-wrap img {
+    height: 100%; width: 100%; object-fit: cover;
+    animation: kenBurns 20s ease-in-out infinite alternate, respirar 8s ease-in-out infinite;
+}
+.foto-grande-wrap::before {
+    content: ""; position: absolute; inset: 0;
+    background: linear-gradient(135deg, rgba(16,43,70,.12), transparent 50%, rgba(201,169,97,.15));
+    z-index: 2; pointer-events: none;
+}
+.foto-grande-wrap::after {
+    content: ""; position: absolute; top: -50%; left: -100%;
+    width: 40%; height: 200%;
+    background: linear-gradient(100deg, transparent, rgba(255,255,255,.5), transparent);
+    transform: rotate(20deg);
+    animation: barrido1 9s ease-in-out infinite;
+    z-index: 3; pointer-events: none;
+}
+.texto h3 { color: var(--azul); font-size: 26px; margin-bottom: 15px; font-weight: 700; }
+.texto h3::after { content: ""; display: block; width: 40px; height: 2px; background: var(--dorado); margin-top: 12px; }
+.texto p { margin-bottom: 16px; font-weight: 300; color: #4a5568; }
+.aviso {
+    background: linear-gradient(120deg, #fff4d9, #fff9e8);
+    border-left: 6px solid #f2b735;
+    padding: 22px 26px; border-radius: 10px;
+    margin-top: 30px; position: relative; overflow: hidden;
+    box-shadow: var(--sombra-suave);
+}
+.aviso::before {
+    content: ""; position: absolute; top: 0; left: -100%;
+    width: 100%; height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,.7), transparent);
+    animation: brilloAviso 5s ease-in-out infinite;
+}
+@keyframes brilloAviso {
+    0%, 100% { transform: translateX(0); }
+    50% { transform: translateX(200%); }
+}
+.aviso strong {
+    display: block; color: #815500; margin-bottom: 5px;
+    font-family: 'Playfair Display', serif; font-size: 17px;
+    position: relative; z-index: 1;
+}
+.aviso p, .aviso > div { position: relative; z-index: 1; }
+.mini-galeria {
+    display: grid; grid-template-columns: repeat(4, 1fr);
+    gap: 14px; margin-top: 50px;
+}
+.mini-img {
+    position: relative; height: 200px; border-radius: 14px; overflow: hidden;
+    box-shadow: var(--sombra-suave);
+    transition: transform .5s var(--ease), box-shadow .5s var(--ease);
+    isolation: isolate; cursor: pointer;
+}
+.mini-img:hover { transform: translateY(-6px); box-shadow: var(--sombra-fuerte); }
+.mini-img img {
+    height: 100%; width: 100%; object-fit: cover;
+    animation: kenBurns 20s ease-in-out infinite alternate, respirar 9s ease-in-out infinite;
+    transition: transform 1.4s var(--ease), filter 1s var(--ease);
+}
+.mini-img:hover img {
+    animation-play-state: paused;
+    transform: scale(1.15); filter: saturate(1.25) contrast(1.1) brightness(1.05);
+}
+.mini-img::before {
+    content: ""; position: absolute; inset: 0;
+    background: linear-gradient(180deg, transparent 40%, rgba(16,43,70,.8));
+    z-index: 2; pointer-events: none;
+}
+.mini-img::after {
+    content: ""; position: absolute; top: -50%; left: -100%;
+    width: 50%; height: 200%;
+    background: linear-gradient(100deg, transparent, rgba(255,255,255,.5), transparent);
+    transform: rotate(20deg); z-index: 3; pointer-events: none;
+}
+.mini-img:hover::after { left: 200%; transition: left 1.2s var(--ease); }
+.mini-label {
+    position: absolute; bottom: 12px; left: 14px; right: 14px;
+    color: white; z-index: 4;
+    font-family: 'Playfair Display', serif;
+    font-size: 14px; font-weight: 700; line-height: 1.3;
+    text-shadow: 0 2px 10px rgba(0,0,0,.5);
+}
+.mini-label small {
+    display: block; font-family: 'Inter', sans-serif;
+    font-size: 10.5px; font-weight: 400;
+    color: rgba(255,255,255,.85);
+    letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 3px;
+}
+.mini-badge {
+    position: absolute; top: 10px; right: 10px;
+    background: rgba(255,255,255,.95);
+    backdrop-filter: blur(10px);
+    padding: 4px 10px; border-radius: 20px;
+    font-size: 10px; font-weight: 700;
+    color: var(--azul); z-index: 5;
+    letter-spacing: .5px;
+    animation: flotarEtiqueta 3s ease-in-out infinite;
+}
+.mini-badge.peligro { color: var(--rojo); }
+.mini-badge.seguro { color: var(--verde); }
+@keyframes flotarEtiqueta {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-4px); }
+}
+.ejemplos-seccion {
+    background: linear-gradient(180deg, #f5f8fc, #eaf4ff);
+    position: relative; overflow: hidden;
+}
+.ejemplos-seccion::before {
+    content: ""; position: absolute; inset: 0;
+    background:
+        radial-gradient(circle at 15% 20%, rgba(8,119,232,.08), transparent 40%),
+        radial-gradient(circle at 85% 80%, rgba(22,160,133,.08), transparent 40%);
+    pointer-events: none;
+}
+.ejemplo-card {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 45px; align-items: center;
+    background: white; border-radius: 22px;
+    padding: 45px; box-shadow: var(--sombra);
+    border: 1px solid rgba(16,43,70,.06);
+    margin-bottom: 40px;
+    position: relative; overflow: hidden; z-index: 1;
+}
+.ejemplo-card::before {
+    content: ""; position: absolute; top: 0; left: 0; right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, var(--azul3), var(--dorado), var(--verde2));
+    background-size: 200% 100%;
+    animation: moverGradiente 4s linear infinite;
+}
+.ejemplo-card.peligro::before {
+    background: linear-gradient(90deg, var(--rojo), #e6a92c, var(--rojo));
+    background-size: 200% 100%;
+    animation: moverGradiente 3s linear infinite;
+}
+.ejemplo-card.seguro::before {
+    background: linear-gradient(90deg, var(--verde), var(--verde2), var(--verde));
+    background-size: 200% 100%;
+}
+.ejemplo-escena {
+    position: relative; height: 380px;
+    display: flex; align-items: center; justify-content: center;
+    background: linear-gradient(135deg, #f4f8fd, #eaf4ff);
+    border-radius: 18px; overflow: hidden;
+    box-shadow: inset 0 0 40px rgba(8,119,232,.06);
+}
+.ejemplo-card.peligro .ejemplo-escena {
+    background: linear-gradient(135deg, #fef5f7, #fde6eb);
+    box-shadow: inset 0 0 40px rgba(214,69,104,.08);
+}
+.ejemplo-card.seguro .ejemplo-escena {
+    background: linear-gradient(135deg, #eefaf5, #ddf5ea);
+    box-shadow: inset 0 0 40px rgba(22,160,133,.08);
+}
+.ejemplo-escena svg { width: 100%; max-width: 400px; height: auto; display: block; }
+.ejemplo-texto h3 {
+    color: var(--azul); font-size: 26px; margin-bottom: 14px;
+    font-weight: 700; line-height: 1.25;
+}
+.ejemplo-card.peligro .ejemplo-texto h3 { color: var(--rojo); }
+.ejemplo-card.seguro .ejemplo-texto h3 { color: var(--verde); }
+.ejemplo-badge {
+    display: inline-block; padding: 6px 16px;
+    border-radius: 30px; font-size: 11.5px;
+    font-weight: 700; letter-spacing: 1.5px;
+    text-transform: uppercase; margin-bottom: 14px;
+    animation: pulsoBadge 2s ease-in-out infinite;
+}
+.ejemplo-badge.peligro {
+    background: linear-gradient(135deg, #fdeef2, #fcdbe2);
+    color: var(--rojo);
+}
+.ejemplo-badge.seguro {
+    background: linear-gradient(135deg, #eefaf5, #ddf5ea);
+    color: var(--verde);
+}
+@keyframes pulsoBadge {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+}
+.ejemplo-texto p {
+    font-size: 15px; color: #4a5568;
+    font-weight: 300; line-height: 1.7; margin-bottom: 16px;
+}
+.ejemplo-pasos {
+    display: flex; flex-direction: column;
+    gap: 10px; margin-top: 18px;
+}
+.ejemplo-paso {
+    display: flex; gap: 12px; align-items: flex-start;
+    padding: 12px 16px; border-radius: 10px;
+    background: #f7fafd;
+    border-left: 3px solid var(--azul3);
+    font-size: 13.5px; line-height: 1.55;
+    transition: transform .4s var(--ease);
+}
+.ejemplo-paso:hover { transform: translateX(6px); }
+.ejemplo-paso.peligro { background: #fef5f7; border-left-color: var(--rojo); }
+.ejemplo-paso.bien { background: #f2fbf6; border-left-color: var(--verde); }
+.ejemplo-paso-num {
+    display: flex; align-items: center; justify-content: center;
+    width: 28px; height: 28px; border-radius: 50%;
+    background: linear-gradient(135deg, var(--azul2), var(--azul3));
+    color: white; font-weight: 700; font-size: 13px;
+    flex-shrink: 0; font-family: 'Playfair Display', serif;
+}
+.ejemplo-paso.peligro .ejemplo-paso-num {
+    background: linear-gradient(135deg, var(--rojo), #e07a91);
+}
+.ejemplo-paso.bien .ejemplo-paso-num {
+    background: linear-gradient(135deg, var(--verde), var(--verde2));
+}
+.ejemplo-escena .part-esc {
+    position: absolute; width: 5px; height: 5px;
+    background: var(--dorado); border-radius: 50%;
+    box-shadow: 0 0 8px var(--dorado);
+    opacity: 0;
+    animation: flotarEscena linear infinite;
+}
+@keyframes flotarEscena {
+    0% { transform: translateY(100%) scale(0); opacity: 0; }
+    20% { opacity: .9; }
+    100% { transform: translateY(-120%) scale(1.3); opacity: 0; }
+}
+.video-seccion {
+    background: linear-gradient(135deg, #102b46 0%, #075b83 100%);
+    position: relative; overflow: hidden; color: white;
+}
+.video-seccion::before {
+    content: ""; position: absolute; inset: 0;
+    background:
+        radial-gradient(circle at 20% 30%, rgba(201,169,97,.15), transparent 40%),
+        radial-gradient(circle at 80% 70%, rgba(8,119,232,.15), transparent 40%);
+    animation: moverFondo 20s ease infinite;
+    background-size: 200% 200%;
+}
+.video-seccion h2 { color: white; }
+.video-seccion h2::after { background: linear-gradient(90deg, transparent, var(--dorado-claro), transparent); }
+.video-seccion .encabezado-seccion p { color: rgba(255,255,255,.8); }
+.video-player {
+    max-width: 900px; margin: auto;
+    position: relative; z-index: 1;
+    border-radius: 20px; overflow: hidden;
+    box-shadow: 0 40px 90px rgba(0,0,0,.35);
+    border: 2px solid rgba(201,169,97,.3);
+    background: #000;
+    aspect-ratio: 16 / 9;
+}
+.video-player iframe {
+    position: absolute; top: 0; left: 0;
+    width: 100%; height: 100%;
+    border: none;
+}
+.video-player-placeholder {
+    position: absolute; inset: 0;
+    display: flex; align-items: center; justify-content: center;
+    background: linear-gradient(135deg, #102b46, #075bb5);
+    color: white; cursor: pointer;
+    transition: transform .4s var(--ease);
+    overflow: hidden;
+}
+.video-player-placeholder:hover { transform: scale(1.02); }
+.video-player-placeholder::before {
+    content: ""; position: absolute; inset: 0;
+    background:
+        radial-gradient(circle at 30% 40%, rgba(8,119,232,.4), transparent 50%),
+        radial-gradient(circle at 70% 60%, rgba(201,169,97,.2), transparent 50%);
+    animation: moverFondo 15s ease infinite;
+    background-size: 200% 200%;
+}
+.video-player-placeholder-inner {
+    position: relative; z-index: 1; text-align: center;
+}
+.play-grande {
+    width: 90px; height: 90px; border-radius: 50%;
+    background: linear-gradient(135deg, var(--dorado), var(--dorado-claro));
+    display: flex; align-items: center; justify-content: center;
+    color: var(--azul); font-size: 32px;
+    margin: 0 auto 20px;
+    box-shadow: 0 20px 50px rgba(201,169,97,.5);
+    animation: pulsoPlayGrande 2s ease-in-out infinite;
+}
+@keyframes pulsoPlayGrande {
+    0%, 100% { transform: scale(1); box-shadow: 0 20px 50px rgba(201,169,97,.5); }
+    50% { transform: scale(1.08); box-shadow: 0 25px 65px rgba(201,169,97,.7); }
+}
+.video-player-placeholder h3 {
+    font-size: 26px; color: white;
+    margin-bottom: 10px; font-family: 'Playfair Display', serif;
+}
+.video-player-placeholder p {
+    color: rgba(255,255,255,.8); font-size: 15px; font-weight: 300;
+}
+.video-info {
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    gap: 25px; max-width: 900px;
+    margin: 40px auto 0;
+    position: relative; z-index: 1;
+}
+.video-info-item {
+    text-align: center; padding: 20px;
+    background: rgba(255,255,255,.06);
+    border: 1px solid rgba(201,169,97,.25);
+    border-radius: 14px;
+    backdrop-filter: blur(10px);
+    transition: transform .4s var(--ease);
+}
+.video-info-item:hover { transform: translateY(-6px); }
+.video-info-item strong {
+    display: block; color: var(--dorado-claro);
+    font-size: 26px; font-family: 'Playfair Display', serif;
+    margin-bottom: 6px;
+}
+.video-info-item span {
+    color: rgba(255,255,255,.85); font-size: 13.5px; font-weight: 300;
+}
+.persona-flota { animation: personaFlota 4s ease-in-out infinite; transform-origin: center; }
+@keyframes personaFlota {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-8px); }
+}
+.cabeza-mueve { animation: cabezaMueve 3s ease-in-out infinite; transform-origin: center bottom; }
+@keyframes cabezaMueve {
+    0%, 100% { transform: rotate(0); }
+    25% { transform: rotate(-4deg); }
+    75% { transform: rotate(4deg); }
+}
+.ojo-mira { animation: ojoMira 3s ease-in-out infinite; }
+@keyframes ojoMira {
+    0%, 100% { transform: translateX(0); }
+    25%, 75% { transform: translateX(2px); }
+    50% { transform: translateX(-2px); }
+}
+.telefono-vibra { animation: telefonoVibra 3s ease-in-out infinite; transform-origin: center; }
+@keyframes telefonoVibra {
+    0%, 60%, 100% { transform: rotate(0); }
+    65%, 75%, 85% { transform: rotate(-4deg); }
+    70%, 80%, 90% { transform: rotate(4deg); }
+}
+.alerta-parpadea { animation: parpadea 1s ease-in-out infinite; }
+@keyframes parpadea {
+    0%, 100% { opacity: 1; }
+    50% { opacity: .3; }
+}
+.escudo-late { animation: escudoLate 2s ease-in-out infinite; transform-origin: center; }
+@keyframes escudoLate {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.06); }
+}
+.check-dibuja {
+    stroke-dasharray: 100; stroke-dashoffset: 100;
+    animation: dibujar 2s ease-in-out infinite;
+}
+@keyframes dibujar {
+    0% { stroke-dashoffset: 100; }
+    40%, 70% { stroke-dashoffset: 0; }
+    100% { stroke-dashoffset: -100; }
+}
+.onda-expande { transform-origin: center; animation: ondaExpande 3s ease-out infinite; }
+@keyframes ondaExpande {
+    0% { transform: scale(.6); opacity: .8; }
+    100% { transform: scale(1.6); opacity: 0; }
+}
+.dibujo-trazo {
+    stroke-dasharray: 1000; stroke-dashoffset: 1000;
+    animation: trazo 3s ease forwards;
+}
+@keyframes trazo { to { stroke-dashoffset: 0; } }
+.dedo-apunta { animation: dedoApunta 2s ease-in-out infinite; transform-origin: left center; }
+@keyframes dedoApunta {
+    0%, 100% { transform: translateX(0); }
+    50% { transform: translateX(10px); }
+}
+.mensaje-aparece {
+    opacity: 0;
+    animation: mensajeAparece 4s ease-in-out infinite;
+}
+@keyframes mensajeAparece {
+    0%, 10% { opacity: 0; transform: translateY(-20px); }
+    20%, 80% { opacity: 1; transform: translateY(0); }
+    90%, 100% { opacity: 0; transform: translateY(-10px); }
+}
+.estrella-brilla { animation: estrellaBrilla 1.5s ease-in-out infinite; transform-origin: center; }
+@keyframes estrellaBrilla {
+    0%, 100% { opacity: .4; transform: scale(1); }
+    50% { opacity: 1; transform: scale(1.3); }
+}
+.virus-gira { animation: virusGira 8s linear infinite; transform-origin: center; }
+@keyframes virusGira { to { transform: rotate(360deg); } }
+.anzuelo-balancea { animation: anzueloBalancea 3.5s ease-in-out infinite; transform-origin: top center; }
+@keyframes anzueloBalancea {
+    0%, 100% { transform: rotate(-8deg); }
+    50% { transform: rotate(8deg); }
+}
+.riesgos { background: #edf5ff; }
+.riesgo { padding: 0 0 28px; }
+.riesgo .icono-svg {
+    height: 160px; display: flex;
+    align-items: center; justify-content: center;
+    background: linear-gradient(135deg, #f0f7ff, #e0f0ff);
+    position: relative; overflow: hidden;
+}
+.riesgo .icono-svg::before {
+    content: ""; position: absolute; inset: 0;
+    background: radial-gradient(circle at center, rgba(201,169,97,.18), transparent 60%);
+    animation: pulsoFondo 4s ease-in-out infinite;
+}
+@keyframes pulsoFondo {
+    0%, 100% { opacity: .5; transform: scale(1); }
+    50% { opacity: 1; transform: scale(1.1); }
+}
+.pasos { display: grid; grid-template-columns: repeat(5, 1fr); gap: 22px; }
+.paso {
+    text-align: center; background: white;
+    padding: 26px 18px; border-radius: 14px;
+    box-shadow: var(--sombra-suave);
+    transition: transform .5s var(--ease), box-shadow .5s var(--ease), border-color .5s;
+    border: 1px solid rgba(16,43,70,.06);
+}
+.paso:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 45px rgba(16,43,70,.14);
+    border-color: rgba(201,169,97,.5);
+}
+.numero {
+    display: flex; align-items: center; justify-content: center;
+    width: 56px; height: 56px; border-radius: 50%;
+    margin: 0 auto 16px; color: white;
+    background: linear-gradient(135deg, var(--azul), var(--azul2));
+    font-size: 22px; font-weight: 700;
+    font-family: 'Playfair Display', serif;
+    transition: transform .6s var(--ease), box-shadow .6s var(--ease);
+    box-shadow: 0 8px 20px rgba(16,43,70,.25);
+    position: relative;
+}
+.numero::before {
+    content: ""; position: absolute; inset: -4px;
+    border-radius: 50%; border: 1px solid var(--dorado);
+    opacity: 0; transition: opacity .4s, inset .4s;
+}
+.paso:hover .numero {
+    transform: rotate(360deg) scale(1.08);
+    box-shadow: 0 12px 30px rgba(16,43,70,.4);
+}
+.paso:hover .numero::before { opacity: 1; inset: -8px; }
+.paso h3 { color: var(--azul); margin-bottom: 10px; font-size: 15px; font-weight: 700; }
+.paso p { font-size: 13px; color: #4a5568; font-weight: 300; }
+.quiz-seccion {
+    background: linear-gradient(135deg, #102b46 0%, #075b83 60%, #102b46 100%);
+    background-size: 200% 200%;
+    animation: moverFondo 20s ease infinite;
+    position: relative; overflow: hidden; color: white;
+}
+.quiz-seccion::before {
+    content: ""; position: absolute; inset: 0;
+    background:
+        radial-gradient(circle at 20% 30%, rgba(201,169,97,.15), transparent 40%),
+        radial-gradient(circle at 80% 70%, rgba(43,169,143,.12), transparent 40%);
+    animation: rotarMalla 25s linear infinite;
+    pointer-events: none;
+}
+@keyframes rotarMalla {
+    0% { transform: rotate(0deg) scale(1); }
+    50% { transform: rotate(180deg) scale(1.15); }
+    100% { transform: rotate(360deg) scale(1); }
+}
+.quiz-seccion h2 { color: white; }
+.quiz-seccion h2::after { background: linear-gradient(90deg, transparent, var(--dorado-claro), transparent); }
+.quiz-seccion .encabezado-seccion p { color: rgba(255,255,255,.82); }
+.quiz-caja {
+    background: rgba(255,255,255,.06);
+    backdrop-filter: blur(14px);
+    border: 1px solid rgba(201,169,97,.3);
+    border-radius: 22px; padding: 45px;
+    max-width: 850px; margin: auto;
+    position: relative; z-index: 1;
+    box-shadow: 0 30px 70px rgba(0,0,0,.3);
+}
+.quiz-caja::before {
+    content: ""; position: absolute; top: 0; left: 0; right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, var(--dorado), var(--verde2), var(--dorado));
+    background-size: 200% 100%;
+    animation: moverGradiente 3s linear infinite;
+    border-radius: 22px 22px 0 0;
+}
+.quiz-header {
+    display: flex; justify-content: space-between; align-items: center;
+    margin-bottom: 20px; flex-wrap: wrap; gap: 12px;
+}
+.quiz-header span {
+    font-family: 'Playfair Display', serif;
+    font-weight: 700; color: var(--dorado-claro); font-size: 15px;
+}
+.quiz-progreso-barra {
+    height: 8px; background: rgba(255,255,255,.1);
+    border-radius: 20px; overflow: hidden;
+    margin-bottom: 30px; position: relative;
+}
+.quiz-progreso-fill {
+    height: 100%; width: 0%;
+    background: linear-gradient(90deg, var(--azul3), var(--dorado), var(--verde2));
+    border-radius: 20px; transition: width .8s var(--ease);
+    position: relative;
+}
+.quiz-progreso-fill::after {
+    content: ""; position: absolute; inset: 0;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,.6), transparent);
+    animation: brilloBarra 1.8s linear infinite;
+}
+@keyframes brilloBarra {
+    from { transform: translateX(-100%); }
+    to { transform: translateX(100%); }
+}
+.quiz-pregunta {
+    font-family: 'Playfair Display', serif;
+    font-size: 22px; color: white; font-weight: 700;
+    margin-bottom: 25px; line-height: 1.4;
+    animation: entrarArriba .6s var(--ease);
+    text-align: center;
+}
+.quiz-opciones { display: grid; gap: 12px; }
+.quiz-opcion {
+    padding: 18px 22px;
+    background: rgba(255,255,255,.08);
+    border: 1.5px solid rgba(255,255,255,.15);
+    border-radius: 14px; cursor: pointer;
+    text-align: left; font-size: 15px;
+    font-family: inherit; color: white;
+    transition: all .4s var(--ease);
+    display: flex; align-items: center; gap: 16px;
+    animation: entrarArriba .6s var(--ease) both;
+    font-weight: 400; position: relative; overflow: hidden;
+}
+.quiz-opcion:nth-child(1) { animation-delay: .08s; }
+.quiz-opcion:nth-child(2) { animation-delay: .16s; }
+.quiz-opcion:nth-child(3) { animation-delay: .24s; }
+.quiz-opcion::before {
+    content: ""; position: absolute; top: 0; left: -100%;
+    width: 100%; height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,.15), transparent);
+    transition: left .6s;
+}
+.quiz-opcion:hover:not(:disabled)::before { left: 100%; }
+.quiz-opcion:hover:not(:disabled) {
+    background: rgba(255,255,255,.16);
+    border-color: var(--dorado);
+    transform: translateX(8px) scale(1.01);
+    box-shadow: 0 10px 30px rgba(201,169,97,.25);
+}
+.quiz-opcion .letra {
+    display: flex; align-items: center; justify-content: center;
+    width: 40px; height: 40px; border-radius: 50%;
+    background: rgba(255,255,255,.12);
+    color: var(--dorado-claro); font-weight: 700;
+    font-family: 'Playfair Display', serif;
+    flex-shrink: 0;
+    border: 1.5px solid rgba(201,169,97,.4);
+    transition: all .4s var(--ease); font-size: 16px;
+}
+.quiz-opcion:hover:not(:disabled) .letra {
+    background: var(--dorado); color: var(--azul);
+    border-color: var(--dorado);
+    transform: scale(1.15) rotate(360deg);
+}
+.quiz-opcion.correcta {
+    background: linear-gradient(120deg, rgba(43,169,143,.35), rgba(22,160,133,.25));
+    border-color: var(--verde2);
+    animation: pulsoCorrecto .8s var(--ease);
+    box-shadow: 0 0 30px rgba(43,169,143,.4);
+}
+.quiz-opcion.correcta .letra {
+    background: var(--verde2); color: white; border-color: var(--verde2);
+}
+.quiz-opcion.correcta::after {
+    content: "✓"; position: absolute; right: 20px;
+    top: 50%; transform: translateY(-50%);
+    font-size: 28px; color: var(--verde2);
+    font-weight: bold;
+    animation: entradaCheck .5s var(--ease);
+}
+@keyframes entradaCheck {
+    from { opacity: 0; transform: translateY(-50%) scale(0) rotate(-180deg); }
+    to { opacity: 1; transform: translateY(-50%) scale(1) rotate(0); }
+}
+.quiz-opcion.incorrecta {
+    background: linear-gradient(120deg, rgba(214,69,104,.35), rgba(224,122,145,.25));
+    border-color: var(--rojo);
+    animation: sacudida .6s var(--ease);
+}
+.quiz-opcion.incorrecta .letra {
+    background: var(--rojo); color: white; border-color: var(--rojo);
+}
+.quiz-opcion.incorrecta::after {
+    content: "✕"; position: absolute; right: 20px;
+    top: 50%; transform: translateY(-50%);
+    font-size: 28px; color: var(--rojo);
+    font-weight: bold;
+    animation: entradaCheck .5s var(--ease);
+}
+.quiz-opcion:disabled { cursor: default; }
+@keyframes pulsoCorrecto {
+    0% { transform: scale(1); }
+    40% { transform: scale(1.04); }
+    100% { transform: scale(1); }
+}
+@keyframes sacudida {
+    0%, 100% { transform: translateX(0); }
+    20% { transform: translateX(-10px); }
+    40% { transform: translateX(10px); }
+    60% { transform: translateX(-8px); }
+    80% { transform: translateX(8px); }
+}
+.quiz-feedback {
+    margin-top: 22px; padding: 18px 22px;
+    border-radius: 12px; display: none;
+    animation: entrarArriba .5s var(--ease);
+    font-size: 14.5px; line-height: 1.6;
+    backdrop-filter: blur(10px);
+}
+.quiz-feedback.ok {
+    display: block;
+    background: rgba(43,169,143,.15);
+    color: #9ef5db;
+    border-left: 4px solid var(--verde2);
+}
+.quiz-feedback.error {
+    display: block;
+    background: rgba(214,69,104,.15);
+    color: #fcc6d3;
+    border-left: 4px solid var(--rojo);
+}
+.quiz-feedback strong {
+    font-family: 'Playfair Display', serif;
+    display: block; margin-bottom: 4px; font-size: 16px;
+}
+.quiz-footer {
+    display: flex; justify-content: flex-end;
+    margin-top: 25px; gap: 12px; flex-wrap: wrap;
+}
+.quiz-btn {
+    padding: 14px 32px;
+    background: linear-gradient(135deg, var(--dorado), var(--dorado-claro));
+    color: var(--azul); border: none;
+    border-radius: 10px; font-weight: 700;
+    cursor: pointer; font-size: 15px;
+    font-family: 'Playfair Display', serif;
+    transition: all .4s var(--ease);
+    box-shadow: 0 10px 26px rgba(201,169,97,.4);
+}
+.quiz-btn:hover:not(:disabled) {
+    transform: translateY(-3px) scale(1.03);
+    box-shadow: 0 16px 36px rgba(201,169,97,.6);
+}
+.quiz-btn:disabled {
+    opacity: .4; cursor: not-allowed; transform: none;
+}
+.quiz-btn.reiniciar {
+    background: linear-gradient(135deg, var(--verde), var(--verde2));
+    color: white;
+}
+.quiz-final {
+    text-align: center; padding: 25px;
+    animation: entrarArriba .7s var(--ease);
+}
+.quiz-final .emoji {
+    font-size: 90px; display: inline-block;
+    animation: brincar 1.4s ease infinite;
+}
+.quiz-final h3 {
+    font-size: 34px; color: var(--dorado-claro);
+    margin: 18px 0;
+    font-family: 'Playfair Display', serif;
+}
+.quiz-final .puntaje {
+    font-size: 64px; font-weight: 700;
+    background: linear-gradient(120deg, var(--dorado), var(--verde2), var(--dorado));
+    background-size: 200% auto;
+    -webkit-background-clip: text; background-clip: text; color: transparent;
+    font-family: 'Playfair Display', serif;
+    margin: 10px 0;
+    animation: brillo 4s linear infinite;
+}
+.quiz-final p {
+    font-size: 16px; margin-bottom: 25px;
+    color: rgba(255,255,255,.85); font-weight: 300;
+}
+.quiz-final .estrella-puntaje {
+    font-size: 40px; letter-spacing: 8px; margin: 15px 0;
+}
+.confeti {
+    position: fixed; width: 12px; height: 12px;
+    top: -20px; z-index: 3000;
+    pointer-events: none;
+    animation: caerConfeti linear forwards;
+}
+@keyframes caerConfeti {
+    to {
+        transform: translateY(105vh) rotate(720deg);
+        opacity: 0;
+    }
+}
+.familia {
+    background: linear-gradient(120deg, #102b46, #075b83, #102b46);
+    background-size: 200% 200%;
+    animation: moverFondo 22s ease infinite;
+    color: white; position: relative; overflow: hidden;
+}
+.familia::before {
+    content: ""; position: absolute; top: -50%; left: -20%;
+    width: 60%; height: 200%;
+    background: radial-gradient(circle, rgba(201,169,97,.12), transparent 60%);
+    pointer-events: none;
+    animation: moverLuzFam 15s ease-in-out infinite;
+}
+@keyframes moverLuzFam {
+    0%, 100% { transform: translateX(0); }
+    50% { transform: translateX(30%); }
+}
+.familia h2 { color: white; }
+.familia h2::after { background: linear-gradient(90deg, transparent, var(--dorado-claro), transparent); }
+.familia .encabezado-seccion p { color: rgba(255,255,255,.78); }
+.familia .tarjeta { color: var(--texto); }
+.familia .tarjeta h3 { color: var(--azul); }
+.faq { max-width: 880px; margin: auto; }
+details {
+    background: white; margin-bottom: 14px;
+    border: 1px solid #e1e9f1; border-radius: 12px;
+    padding: 20px 24px;
+    transition: all .4s var(--ease);
+    box-shadow: var(--sombra-suave);
+}
+details[open] {
+    box-shadow: 0 12px 32px rgba(16,43,70,.08);
+    border-color: rgba(201,169,97,.4);
+    background: linear-gradient(120deg, #fff, #fdfaf3);
+}
+details:hover { border-color: rgba(201,169,97,.5); }
+summary {
+    cursor: pointer; color: var(--azul);
+    font-weight: 700; font-family: 'Playfair Display', serif;
+    font-size: 16.5px; list-style: none;
+    position: relative; padding-right: 30px;
+}
+summary::-webkit-details-marker { display: none; }
+summary::after {
+    content: "+"; position: absolute;
+    right: 0; top: 50%; transform: translateY(-50%);
+    font-size: 24px; color: var(--dorado);
+    transition: transform .4s var(--ease);
+    font-weight: 300;
+}
+details[open] summary::after { transform: translateY(-50%) rotate(45deg); }
+details p { margin-top: 12px; font-weight: 300; color: #4a5568; }
+.contacto { background: white; }
+.final {
+    background: linear-gradient(120deg, #dff8f0, #e4f0ff, #dff8f0);
+    background-size: 200% 200%;
+    animation: moverFondo 12s ease infinite;
+    text-align: center; border-radius: 22px;
+    padding: 65px 30px;
+    box-shadow: 0 25px 60px rgba(16,43,70,.1);
+    border: 1px solid rgba(201,169,97,.2);
+    position: relative; overflow: hidden;
+}
+.final::before {
+    content: ""; position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, transparent, var(--dorado), transparent);
+}
+.final h2 { margin-bottom: 18px; }
+.final p { max-width: 720px; margin: 0 auto 25px; font-size: 16.5px; font-weight: 300; color: #4a5568; }
+footer {
+    background: #091c30; color: #d6e4f0;
+    padding: 45px 0 22px;
+    border-top: 1px solid rgba(201,169,97,.15);
+}
+.footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 35px; margin-bottom: 30px; }
+footer h3, footer strong { color: white; font-family: 'Playfair Display', serif; }
+footer p, footer li { font-size: 13.5px; margin-top: 10px; font-weight: 300; }
+footer ul { list-style: none; }
+footer a { color: #b9d9f5; transition: color .3s, padding-left .3s; display: inline-block; }
+footer a:hover { color: #4dd9c0; padding-left: 6px; }
+.copyright {
+    border-top: 1px solid rgba(255,255,255,.1);
+    padding-top: 20px; text-align: center;
+    font-size: 12.5px; color: rgba(214,228,240,.6);
+    font-weight: 300;
+}
+#subir {
+    display: none; position: fixed;
+    right: 22px; bottom: 22px; z-index: 999;
+    background: linear-gradient(135deg, var(--azul3), var(--azul2));
+    color: white; width: 50px; height: 50px;
+    border: none; border-radius: 50%;
+    font-size: 20px; cursor: pointer;
+    box-shadow: 0 10px 26px rgba(8,119,232,.4);
+    transition: transform .4s var(--ease);
+}
+#subir:hover { transform: translateY(-5px) scale(1.08); }
+@media(max-width: 1000px) {
+    .pasos { grid-template-columns: repeat(3, 1fr); }
+    .video-info { grid-template-columns: 1fr; }
+    .mini-galeria { grid-template-columns: repeat(2, 1fr); }
+}
+@media(max-width: 900px) {
+    .hero-grid, .dos-columnas, .ejemplo-card { grid-template-columns: 1fr; gap: 35px; }
+    .hero-imagen-wrap { height: 380px; border-radius: 18px; margin-bottom: 20px; }
+    .svg-flotante { width: 130px; height: 130px; left: -10px; bottom: -10px; }
+    .tarjetas { grid-template-columns: repeat(2, 1fr); }
+    .footer-grid { grid-template-columns: 1fr 1fr; }
+    .ejemplo-escena { height: 320px; }
+    .ejemplo-card { padding: 30px 22px; }
+    .quiz-caja { padding: 30px 22px; }
+    .quiz-pregunta { font-size: 19px; }
+}
+@media(max-width: 650px) {
+    .navbar { flex-wrap: wrap; padding: 15px 0; }
+    .menu-btn { display: block; }
+    nav { display: none; flex-direction: column; align-items: stretch; width: 100%; padding: 12px 0; }
+    nav.activo { display: flex; }
+    nav a { padding: 8px; }
+    .hero-imagen-wrap { height: 280px; }
+    .tarjetas, .beneficios-grid, .pasos, .footer-grid, .mini-galeria { grid-template-columns: 1fr; }
+    .foto-grande-wrap { height: 280px; }
+    section { padding: 60px 0; }
+    .ejemplo-escena { height: 260px; }
+    .quiz-caja { padding: 25px 18px; }
+    .quiz-pregunta { font-size: 17px; }
+    .quiz-opcion { padding: 14px 16px; font-size: 14px; }
+    .quiz-opcion .letra { width: 34px; height: 34px; font-size: 14px; }
+    .quiz-final .puntaje { font-size: 48px; }
+    .quiz-final .emoji { font-size: 70px; }
+    .video-player-placeholder h3 { font-size: 20px; }
+    .play-grande { width: 70px; height: 70px; font-size: 26px; }
+}
+@media(prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+        scroll-behavior: auto !important;
+        transition: none !important;
+        animation: none !important;
+    }
+    .foto-grande-wrap { clip-path: none !important; }
+    .revelar { opacity: 1 !important; transform: none !important; }
+}
+</style>
+</head>
+<body>
+
+<div id="progreso"></div>
+
+<header>
+    <div class="contenedor navbar">
+        <a class="logo" href="#inicio">🛡️ Ciber<span>Segura</span></a>
+        <button class="menu-btn" id="menuBtn" aria-label="Abrir menú" aria-expanded="false">☰</button>
+        <nav id="menu">
+            <a href="#inicio">Inicio</a>
+            <a href="#video">Video</a>
+            <a href="#ejemplos">Ejemplos</a>
+            <a href="#adultos">Adultos</a>
+            <a href="#ninos">Niños</a>
+            <a href="#riesgos">Riesgos</a>
+            <a href="#consejos">Consejos</a>
+            <a href="#quiz">Test</a>
+            <a href="#preguntas">Preguntas</a>
+        </nav>
+    </div>
+</header>
+
+<main>
+
+<!-- HERO -->
+<section class="hero" id="inicio">
+    <div class="orbe orbe-1"></div>
+    <div class="orbe orbe-2"></div>
+    <div class="contenedor hero-grid">
+        <div class="hero-texto">
+            <span class="etiqueta">Ciberseguridad en dispositivos móviles</span>
+            <h1>La tecnología nos acerca, <span>la seguridad nos protege.</span></h1>
+            <p>
+                Los celulares, las tabletas y las aplicaciones forman parte
+                de nuestra vida cotidiana. Nos permiten aprender, comunicarnos
+                y compartir momentos especiales, pero también pueden exponernos
+                a riesgos si no sabemos utilizarlos de manera segura.
+            </p>
+            <p>
+                Descubre cómo proteger tu información, reconocer estafas y
+                construir un entorno digital más seguro para niños y adultos mayores.
+            </p>
+            <a href="#video" class="boton">Ver el video →</a>
+        </div>
+        <div class="hero-imagen-wrap video-wrap" data-parallax>
+            <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=1100&q=85"
+                 alt="Retrato de una mujer utilizando tecnología" fetchpriority="high">
+            <div class="luz-dorada"></div>
+            <div class="vignette"></div>
+            <svg class="svg-flotante" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                    <linearGradient id="gradEscudo" x1="0" y1="0" x2="0" y2="1">
+                        <stop offset="0%" stop-color="#075bb5"/>
+                        <stop offset="100%" stop-color="#102b46"/>
+                    </linearGradient>
+                    <linearGradient id="gradDorado" x1="0" y1="0" x2="1" y2="1">
+                        <stop offset="0%" stop-color="#e3c88a"/>
+                        <stop offset="100%" stop-color="#c9a961"/>
+                    </linearGradient>
+                </defs>
+                <circle cx="100" cy="100" r="70" fill="none" stroke="#c9a961" stroke-width="1.5" class="onda-expande"/>
+                <circle cx="100" cy="100" r="70" fill="none" stroke="#c9a961" stroke-width="1.5" class="onda-expande" style="animation-delay: 1s"/>
+                <circle cx="100" cy="100" r="70" fill="none" stroke="#c9a961" stroke-width="1.5" class="onda-expande" style="animation-delay: 2s"/>
+                <g class="escudo-late">
+                    <path d="M100 35 L150 55 L150 105 Q150 145 100 165 Q50 145 50 105 L50 55 Z"
+                          fill="url(#gradEscudo)" stroke="url(#gradDorado)" stroke-width="3"/>
+                    <path d="M78 100 L93 118 L124 82"
+                          fill="none" stroke="url(#gradDorado)" stroke-width="6"
+                          stroke-linecap="round" stroke-linejoin="round" class="check-dibuja"/>
+                </g>
+            </svg>
+        </div>
+    </div>
+</section>
+
+<!-- BENEFICIOS -->
+<div class="beneficios">
+    <div class="contenedor beneficios-grid">
+        <div class="revelar"><strong>🔐 Protección</strong><span>Cuida tus datos personales.</span></div>
+        <div class="revelar revelar-d1"><strong>🧠 Prevención</strong><span>Identifica los peligros digitales.</span></div>
+        <div class="revelar revelar-d2"><strong>🤝 Educación</strong><span>Aprende y comparte en familia.</span></div>
+    </div>
+</div>
+
+<!-- INTRO -->
+<section>
+    <div class="contenedor">
+        <div class="encabezado-seccion revelar">
+            <span class="etiqueta">Un mundo conectado</span>
+            <h2>¿Qué es la ciberseguridad?</h2>
+            <p>Es el conjunto de medidas, hábitos y herramientas que ayudan a proteger dispositivos, cuentas, redes e información frente a accesos no autorizados, fraudes y otros riesgos digitales.</p>
+        </div>
+        <div class="tarjetas">
+            <article class="tarjeta revelar">
+                <div class="tarjeta-img-wrap">
+                    <img src="https://images.unsplash.com/photo-1563013544-824ae1b704d3?auto=format&fit=crop&w=800&q=80" alt="Privacidad digital" loading="lazy">
+                </div>
+                <div class="tarjeta-contenido">
+                    <div class="icono">🔒</div>
+                    <h3>Privacidad digital</h3>
+                    <p>Protege fotografías, conversaciones, documentos, contraseñas y datos personales para evitar que otras personas los utilicen sin tu permiso.</p>
+                </div>
+            </article>
+            <article class="tarjeta revelar revelar-d1">
+                <div class="tarjeta-img-wrap">
+                    <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=800&q=80" alt="Educación tecnológica" loading="lazy">
+                </div>
+                <div class="tarjeta-contenido">
+                    <div class="icono">📚</div>
+                    <h3>Educación tecnológica</h3>
+                    <p>Aprender a configurar el celular y reconocer las señales de peligro permite aprovechar la tecnología con mayor confianza y responsabilidad.</p>
+                </div>
+            </article>
+            <article class="tarjeta revelar revelar-d2">
+                <div class="tarjeta-img-wrap">
+                    <img src="https://images.unsplash.com/photo-1511895426328-dc8714191300?auto=format&fit=crop&w=800&q=80" alt="Bienestar familiar" loading="lazy">
+                </div>
+                <div class="tarjeta-contenido">
+                    <div class="icono">💚</div>
+                    <h3>Bienestar familiar</h3>
+                    <p>Hablar sobre los riesgos de Internet ayuda a que los niños y los adultos mayores pidan ayuda cuando reciben mensajes o solicitudes sospechosas.</p>
+                </div>
+            </article>
+        </div>
+    </div>
+</section>
+
+<!-- VIDEO -->
+<section class="video-seccion" id="video">
+    <div class="contenedor">
+        <div class="encabezado revelar">
+            <span class="etiqueta"></span>
+            <h2>🎥 Video </h2>
+            <p>recorrido visual por las situaciones más comunes y cómo actuar de forma segura.</p>
+
+        </div>
+
+        <!-- Tarjeta que lleva a YouTube -->
+        <div style="max-width: 900px; margin: 0 auto; position: relative; z-index: 1;">
+            <a href="https://www.youtube.com/watch?v=J9xL8DurqA0" target="_blank" rel="noopener noreferrer" style="text-decoration: none; display: block;">
+                
+                <div class="video-player" style="position: relative; aspect-ratio: 16/9; border-radius: 20px; overflow: hidden; box-shadow: 0 40px 90px rgba(0,0,0,.35); border: 2px solid rgba(201,169,97,.3); background: #000; transition: transform 0.4s ease;">
+                    
+                    <!-- Imagen fija de alta calidad relacionada con ciberseguridad -->
+                    <img src="https://images.unsplash.com/photo-1563986768609-322da13575f3?auto=format&fit=crop&w=1200&q=80" 
+                         alt="Ciberseguridad" 
+                         style="width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease;">
+                    
+                    <!-- Filtro oscuro para que resalte el texto y el botón -->
+                    <div style="position: absolute; inset: 0; background: rgba(16,43,70,0.6); display: flex; flex-direction: column; align-items: center; justify-content: center; transition: background 0.3s;">
+                        
+                        <!-- Botón Play animado -->
+                        <div class="play-grande" style="width: 90px; height: 90px; border-radius: 50%; background: linear-gradient(135deg, #c9a961, #e3c88a); display: flex; align-items: center; justify-content: center; color: #102b46; font-size: 32px; margin-bottom: 20px; box-shadow: 0 20px 50px rgba(201,169,97,.6); animation: pulsoPlay 2s ease-in-out infinite;">
+                            ▶
+                        </div>
+                        
+                        <h3 style="font-size: 26px; color: white; margin-bottom: 10px; font-family: 'Playfair Display', serif; text-align: center; padding: 0 20px; text-shadow: 0 4px 15px rgba(0,0,0,.8);">
+                            Ciberseguridad en familia
+                        </h3>
+                        
+                        <!-- Distintivo de YouTube -->
+                        <div style="display: flex; align-items: center; gap: 8px; background: #d64568; color: white; padding: 8px 16px; border-radius: 30px; font-size: 13px; font-weight: 600; margin-top: 5px; box-shadow: 0 5px 15px rgba(214,69,104,.4);">
+                            <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M21.582,6.186c-0.23-0.86-0.908-1.538-1.768-1.768C18.254,4,12,4,12,4s-6.254,0-7.814,0.418c-0.86,0.23-1.538,0.908-1.768,1.768C2,7.746,2,12,2,12s0,4.254,0.418,5.814c0.23,0.86,0.908,1.538,1.768,1.768C5.746,20,12,20,12,20s6.254,0,7.814-0.418c0.861-0.23,1.538-0.908,1.768-1.768C22,16.254,22,12,22,12S22,7.746,21.582,6.186z M10,15.464V8.536L16,12L10,15.464z"/></svg>
+                            Ver video en YouTube
+                        </div>
+                    </div>
+                </div>
+            </a>
+        </div>
+
+        <div class="video-info">
+            <div class="video-info-item">
+                <strong>3 min</strong>
+                <span>Duración aproximada</span>
+            </div>
+            <div class="video-info-item">
+                <strong>10</strong>
+                <span>Situaciones reales</span>
+            </div>
+            <div class="video-info-item">
+                <strong>Todo público</strong>
+                <span>Apto para familias</span>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- EJEMPLOS ANIMADOS -->
+<section class="ejemplos-seccion" id="ejemplos">
+    <div class="contenedor">
+        <div class="encabezado-seccion revelar">
+            <span class="etiqueta">Aprende viendo · Como pequeños videos</span>
+            <h2>🎬 Ejemplos visuales animados</h2>
+            <p>Tres escenas que se reproducen paso a paso. Observa cada movimiento y aprende qué hacer (o qué evitar) en situaciones reales.</p>
+        </div>
+
+        <!-- ESCENA 1 -->
+        <div class="ejemplo-card peligro revelar">
+            <div class="ejemplo-escena">
+                <div class="part-esc" style="left: 15%; bottom: -10px; animation-duration: 6s;"></div>
+                <div class="part-esc" style="left: 45%; bottom: -10px; animation-duration: 8s; animation-delay: 1s;"></div>
+                <div class="part-esc" style="left: 75%; bottom: -10px; animation-duration: 7s; animation-delay: 2s;"></div>
+                <div class="part-esc" style="left: 88%; bottom: -10px; animation-duration: 9s; animation-delay: 3s;"></div>
+
+                <svg viewBox="0 0 420 400" xmlns="http://www.w3.org/2000/svg">
+                    <defs>
+                        <linearGradient id="tel1" x1="0" y1="0" x2="0" y2="1">
+                            <stop offset="0%" stop-color="#fdeef2"/>
+                            <stop offset="100%" stop-color="#fcdbe2"/>
+                        </linearGradient>
+                        <linearGradient id="cara1" x1="0" y1="0" x2="0" y2="1">
+                            <stop offset="0%" stop-color="#f4d5b8"/>
+                            <stop offset="100%" stop-color="#e8c0a0"/>
+                        </linearGradient>
+                        <linearGradient id="camisa1" x1="0" y1="0" x2="0" y2="1">
+                            <stop offset="0%" stop-color="#0877e8"/>
+                            <stop offset="100%" stop-color="#102b46"/>
+                        </linearGradient>
+                    </defs>
+                    <g class="persona-flota" style="transform-origin: 140px 320px;">
+                        <path d="M60 400 L60 300 Q60 265 105 260 L175 260 Q220 265 220 300 L220 400 Z"
+                              fill="url(#camisa1)" class="dibujo-trazo"/>
+                        <rect x="125" y="235" width="30" height="30" fill="#e8c0a0"/>
+                        <g class="cabeza-mueve" style="transform-origin: 140px 200px;">
+                            <ellipse cx="140" cy="195" rx="42" ry="48" fill="url(#cara1)" stroke="#8b5a3c" stroke-width="2"/>
+                            <path d="M100 190 Q106 150 140 145 Q174 150 180 190 Q170 172 140 170 Q110 172 100 190"
+                                  fill="#c8c8c8" stroke="#8b5a3c" stroke-width="1.5"/>
+                            <g class="ojo-mira">
+                                <circle cx="126" cy="198" r="3.5" fill="#2a1f14"/>
+                                <circle cx="154" cy="198" r="3.5" fill="#2a1f14"/>
+                            </g>
+                            <path d="M125 222 Q140 216 155 222" fill="none" stroke="#8b5a3c" stroke-width="2.5" stroke-linecap="round"/>
+                        </g>
+                    </g>
+                    <g class="telefono-vibra" style="transform-origin: 320px 250px;">
+                        <rect x="285" y="180" width="80" height="145" rx="14" fill="url(#tel1)" stroke="#d64568" stroke-width="3"/>
+                        <rect x="293" y="192" width="64" height="120" rx="6" fill="white"/>
+                        <circle cx="325" cy="240" r="22" fill="#d64568" class="alerta-parpadea"/>
+                        <path d="M315 235 Q315 230 319 230 L323 230 Q325 230 326 233 L327 237 Q328 239 326 241 L323 243 Q326 249 331 251 L334 248 Q335 246 337 247 L341 249 Q343 250 343 252 L343 255 Q343 259 338 259 Q318 259 315 235 Z" fill="white"/>
+                        <rect x="303" y="272" width="44" height="5" rx="2.5" fill="#d64568" opacity=".4"/>
+                        <rect x="307" y="282" width="36" height="4" rx="2" fill="#d64568" opacity=".3"/>
+                    </g>
+                    <text x="55" y="90" font-size="40" fill="#d64568" font-weight="bold" class="alerta-parpadea">!</text>
+                    <text x="360" y="95" font-size="32" fill="#d64568" font-weight="bold" class="alerta-parpadea" style="animation-delay: .5s;">!</text>
+                </svg>
+            </div>
+            <div class="ejemplo-texto">
+                <span class="ejemplo-badge peligro">⚠️ Situación de riesgo</span>
+                <h3>Llamada del "banco" pidiendo tus datos</h3>
+                <p>El teléfono suena. Alguien dice ser del banco y te pide con urgencia tu contraseña o códigos porque "detectaron un movimiento sospechoso".</p>
+                <div class="ejemplo-pasos">
+                    <div class="ejemplo-paso peligro">
+                        <div class="ejemplo-paso-num">1</div>
+                        <div>La persona dice ser del banco y usa la <strong>urgencia</strong> como herramienta.</div>
+                    </div>
+                    <div class="ejemplo-paso peligro">
+                        <div class="ejemplo-paso-num">2</div>
+                        <div>Te pide <strong>datos confidenciales</strong>: contraseñas, NIP o códigos.</div>
+                    </div>
+                    <div class="ejemplo-paso bien">
+                        <div class="ejemplo-paso-num">✓</div>
+                        <div><strong>Cuelga inmediatamente.</strong> Los bancos NUNCA piden datos por llamada.</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ESCENA 2 -->
+        <div class="ejemplo-card peligro revelar">
+            <div class="ejemplo-escena">
+                <div class="part-esc" style="left: 20%; bottom: -10px; animation-duration: 7s;"></div>
+                <div class="part-esc" style="left: 55%; bottom: -10px; animation-duration: 6s; animation-delay: 1.5s;"></div>
+                <div class="part-esc" style="left: 80%; bottom: -10px; animation-duration: 8s; animation-delay: 3s;"></div>
+
+                <svg viewBox="0 0 420 400" xmlns="http://www.w3.org/2000/svg">
+                    <defs>
+                        <linearGradient id="tel2" x1="0" y1="0" x2="0" y2="1">
+                            <stop offset="0%" stop-color="#fff5e0"/>
+                            <stop offset="100%" stop-color="#ffe8b8"/>
+                        </linearGradient>
+                        <linearGradient id="dedo2" x1="0" y1="0" x2="0" y2="1">
+                            <stop offset="0%" stop-color="#f4d5b8"/>
+                            <stop offset="100%" stop-color="#e0b896"/>
+                        </linearGradient>
+                    </defs>
+                    <g class="persona-flota" style="transform-origin: 210px 200px;">
+                        <rect x="110" y="60" width="200" height="320" rx="26" fill="url(#tel2)" stroke="#0877e8" stroke-width="3"/>
+                        <rect x="122" y="80" width="176" height="280" rx="12" fill="white"/>
+                        <circle cx="210" cy="72" r="4" fill="#0877e8"/>
+                        <g class="mensaje-aparece">
+                            <rect x="138" y="105" width="144" height="72" rx="12" fill="#fff4d9" stroke="#e6a92c" stroke-width="2"/>
+                            <text x="160" y="150" font-size="34" text-anchor="middle">🏆</text>
+                            <text x="218" y="132" font-size="12" fill="#815500" font-weight="bold" font-family="Inter">¡GANASTE!</text>
+                            <text x="218" y="148" font-size="10" fill="#815500" font-family="Inter">Un celular nuevo</text>
+                            <text x="218" y="162" font-size="10" fill="#815500" font-family="Inter">Haz clic aquí →</text>
+                        </g>
+                        <g class="mensaje-aparece" style="animation-delay: 1.5s;">
+                            <rect x="138" y="190" width="144" height="50" rx="12" fill="#fdeef2" stroke="#d64568" stroke-width="2"/>
+                            <text x="160" y="222" font-size="22" text-anchor="middle">⚠️</text>
+                            <text x="218" y="212" font-size="10" fill="#a32e4e" font-weight="bold" font-family="Inter">Solo por HOY</text>
+                            <text x="218" y="226" font-size="10" fill="#a32e4e" font-family="Inter">Reclama ahora</text>
+                        </g>
+                        <g class="alerta-parpadea" style="animation-delay: 2.5s;">
+                            <rect x="140" y="255" width="140" height="42" rx="8" fill="#d64568"/>
+                            <text x="210" y="276" text-anchor="middle" font-size="11" fill="white" font-weight="bold" font-family="Inter">CLIC AQUÍ para reclamar</text>
+                            <text x="210" y="290" text-anchor="middle" font-size="9" fill="#fdeef2" font-family="Inter">www.premio-falso.xyz</text>
+                        </g>
+                        <path d="M140 305 L280 305" stroke="#d64568" stroke-width="2" stroke-dasharray="5,3" class="alerta-parpadea"/>
+                        <text x="210" y="325" text-anchor="middle" font-size="10" fill="#d64568" font-weight="bold" font-family="Inter">URL SOSPECHOSA</text>
+                    </g>
+                    <g class="dedo-apunta" style="transform-origin: 60px 270px;">
+                        <path d="M40 285 Q60 268 90 268 L100 268 Q110 268 115 275 L115 283 Q115 291 108 291 L100 291 L100 296 Q100 304 92 304 L60 304 Q40 304 40 288 Z"
+                              fill="url(#dedo2)" stroke="#8b5a3c" stroke-width="2"/>
+                    </g>
+                </svg>
+            </div>
+            <div class="ejemplo-texto">
+                <span class="ejemplo-badge peligro">⚠️ Situación de riesgo</span>
+                <h3>"¡Ganaste un celular nuevo!" Haz clic aquí</h3>
+                <p>Un mensaje aparece diciendo que ganaste un premio increíble. Solo tienes que hacer clic en un enlace y dar tus datos para reclamarlo.</p>
+                <div class="ejemplo-pasos">
+                    <div class="ejemplo-paso peligro">
+                        <div class="ejemplo-paso-num">1</div>
+                        <div>El mensaje usa <strong>premios llamativos</strong> para atrapar tu atención.</div>
+                    </div>
+                    <div class="ejemplo-paso peligro">
+                        <div class="ejemplo-paso-num">2</div>
+                        <div>Aparece un <strong>enlace extraño</strong> que no es de una página oficial.</div>
+                    </div>
+                    <div class="ejemplo-paso bien">
+                        <div class="ejemplo-paso-num">✓</div>
+                        <div><strong>Nunca hagas clic.</strong> Si no participaste en un sorteo, no ganaste nada.</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ESCENA 3 -->
+        <div class="ejemplo-card seguro revelar">
+            <div class="ejemplo-escena">
+                <div class="part-esc" style="left: 25%; bottom: -10px; animation-duration: 8s;"></div>
+                <div class="part-esc" style="left: 60%; bottom: -10px; animation-duration: 7s; animation-delay: 2s;"></div>
+                <div class="part-esc" style="left: 85%; bottom: -10px; animation-duration: 6s; animation-delay: 1s;"></div>
+
+                <svg viewBox="0 0 420 400" xmlns="http://www.w3.org/2000/svg">
+                    <defs>
+                        <linearGradient id="cara3" x1="0" y1="0" x2="0" y2="1">
+                            <stop offset="0%" stop-color="#f4d5b8"/>
+                            <stop offset="100%" stop-color="#e8c0a0"/>
+                        </linearGradient>
+                        <linearGradient id="escudo3" x1="0" y1="0" x2="0" y2="1">
+                            <stop offset="0%" stop-color="#16a085"/>
+                            <stop offset="100%" stop-color="#0f5c4e"/>
+                        </linearGradient>
+                    </defs>
+                    <g class="persona-flota" style="transform-origin: 210px 300px;">
+                        <path d="M130 400 L130 300 Q130 265 180 260 L240 260 Q290 265 290 300 L290 400 Z" fill="#16a085"/>
+                        <rect x="195" y="230" width="30" height="35" fill="#e8c0a0"/>
+                        <g class="cabeza-mueve" style="transform-origin: 210px 190px;">
+                            <ellipse cx="210" cy="185" rx="45" ry="52" fill="url(#cara3)" stroke="#8b5a3c" stroke-width="2"/>
+                            <path d="M165 180 Q172 138 210 132 Q248 138 255 180 Q245 160 210 158 Q175 160 165 180"
+                                  fill="#5a3a1e" stroke="#3a2818" stroke-width="1.5"/>
+                            <g class="ojo-mira">
+                                <circle cx="194" cy="188" r="4" fill="#2a1f14"/>
+                                <circle cx="226" cy="188" r="4" fill="#2a1f14"/>
+                            </g>
+                            <path d="M190 215 Q210 232 230 215" fill="none" stroke="#8b5a3c" stroke-width="3" stroke-linecap="round"/>
+                            <circle cx="176" cy="210" r="6" fill="#ffb0b8" opacity=".65"/>
+                            <circle cx="244" cy="210" r="6" fill="#ffb0b8" opacity=".65"/>
+                        </g>
+                    </g>
+                    <g class="escudo-late" style="transform-origin: 210px 165px;">
+                        <path d="M210 60 L280 90 L280 160 Q280 235 210 280 Q140 235 140 160 L140 90 Z"
+                              fill="none" stroke="url(#escudo3)" stroke-width="4" opacity=".35"/>
+                        <circle cx="210" cy="165" r="42" fill="white" opacity=".95" stroke="#16a085" stroke-width="3"/>
+                        <path d="M190 165 L205 182 L232 148"
+                              fill="none" stroke="#16a085" stroke-width="7"
+                              stroke-linecap="round" stroke-linejoin="round"
+                              class="check-dibuja"/>
+                    </g>
+                    <circle cx="210" cy="200" r="90" fill="none" stroke="#2ba98f" stroke-width="2" class="onda-expande"/>
+                    <circle cx="210" cy="200" r="90" fill="none" stroke="#2ba98f" stroke-width="2" class="onda-expande" style="animation-delay: 1s;"/>
+                    <circle cx="210" cy="200" r="90" fill="none" stroke="#2ba98f" stroke-width="2" class="onda-expande" style="animation-delay: 2s;"/>
+                    <g class="estrella-brilla"><text x="70" y="90" font-size="24" fill="#c9a961">✦</text></g>
+                    <g class="estrella-brilla" style="animation-delay: .5s;"><text x="340" y="110" font-size="20" fill="#c9a961">✦</text></g>
+                    <g class="estrella-brilla" style="animation-delay: 1s;"><text x="60" y="340" font-size="22" fill="#c9a961">✦</text></g>
+                    <g class="estrella-brilla" style="animation-delay: 1.5s;"><text x="350" y="350" font-size="26" fill="#c9a961">✦</text></g>
+                </svg>
+            </div>
+            <div class="ejemplo-texto">
+                <span class="ejemplo-badge seguro">✅ La forma correcta</span>
+                <h3>Detente, verifica y decide con calma</h3>
+                <p>Cuando algo te parece sospechoso, el mejor superpoder es <strong>detenerte</strong> y verificar por otra vía antes de actuar. Así proteges tu dinero y tu información.</p>
+                <div class="ejemplo-pasos">
+                    <div class="ejemplo-paso">
+                        <div class="ejemplo-paso-num">1</div>
+                        <div><strong>Detente.</strong> No respondas con prisa aunque te presionen.</div>
+                    </div>
+                    <div class="ejemplo-paso">
+                        <div class="ejemplo-paso-num">2</div>
+                        <div><strong>Verifica.</strong> Llama a la persona o empresa por un número oficial conocido.</div>
+                    </div>
+                    <div class="ejemplo-paso bien">
+                        <div class="ejemplo-paso-num">✓</div>
+                        <div><strong>Actúa con calma.</strong> Si todo está bien, procede sin miedo. Si no, ignora y reporta.</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ADULTOS MAYORES -->
+<section class="fondo-blanco" id="adultos">
+    <div class="contenedor">
+        <div class="encabezado-seccion revelar">
+            <span class="etiqueta">Experiencia y confianza</span>
+            <h2>Ciberseguridad para adultos mayores</h2>
+            <p>Los teléfonos inteligentes permiten realizar videollamadas, consultar información, enviar mensajes y mantenerse cerca de familiares y amigos.</p>
+        </div>
+        <div class="dos-columnas">
+            <div class="foto-grande-wrap revelar">
+                <img src="https://images.unsplash.com/photo-1516307365426-bea591f05011?auto=format&fit=crop&w=1000&q=85"
+                     alt="Persona mayor disfrutando de la tecnología" loading="lazy">
+            </div>
+            <div class="texto revelar revelar-d2">
+                <h3>Consejos para navegar con tranquilidad</h3>
+                <p>Las estafas digitales pueden utilizar mensajes alarmantes, llamadas inesperadas o supuestas ofertas para conseguir dinero e información. Nunca es necesario responder de inmediato.</p>
+                <ul class="lista">
+                    <li>Configura un PIN o contraseña para bloquear el celular.</li>
+                    <li>No compartas NIP, contraseñas ni códigos de verificación.</li>
+                    <li>Desconfía de llamadas que solicitan dinero con urgencia.</li>
+                    <li>Confirma con tus familiares cualquier petición extraña.</li>
+                    <li>Descarga aplicaciones desde tiendas oficiales.</li>
+                    <li>Revisa los permisos que solicita cada aplicación.</li>
+                    <li>Mantén actualizado tu celular.</li>
+                    <li>Activa la verificación en dos pasos en tus cuentas.</li>
+                    <li>Realiza copias de seguridad de tus fotografías importantes.</li>
+                    <li>Pide ayuda a una persona de confianza si tienes dudas.</li>
+                </ul>
+                <div style="margin-top:22px">
+                    <a href="#riesgos" class="boton boton-verde">Aprende a reconocer estafas</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="mini-galeria revelar">
+            <div class="mini-img">
+                <img src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?auto=format&fit=crop&w=600&q=85" alt="Persona mayor sonriendo con su celular" loading="lazy">
+                <span class="mini-badge seguro">✅ Comunicación</span>
+                <div class="mini-label"><small>Familia</small>Videollamadas seguras</div>
+            </div>
+            <div class="mini-img">
+                <img src="https://images.unsplash.com/photo-1552058544-f2b08422138a?auto=format&fit=crop&w=600&q=85" alt="Persona mayor preocupada" loading="lazy">
+                <span class="mini-badge peligro">⚠️ Cuidado</span>
+                <div class="mini-label"><small>Alertas</small>Llamadas sospechosas</div>
+            </div>
+            <div class="mini-img">
+                <img src="https://images.unsplash.com/photo-1581579438747-104c53d7fbc4?auto=format&fit=crop&w=600&q=85" alt="Persona mayor aprendiendo" loading="lazy">
+                <span class="mini-badge seguro">✅ Aprender</span>
+                <div class="mini-label"><small>Educación</small>Aprender paso a paso</div>
+            </div>
+            <div class="mini-img">
+                <img src="https://images.unsplash.com/photo-1491013516836-7db643ee125a?auto=format&fit=crop&w=600&q=85" alt="Joven ayudando a mayor" loading="lazy">
+                <span class="mini-badge seguro">✅ Familia</span>
+                <div class="mini-label"><small>Acompañamiento</small>Pedir ayuda es seguro</div>
+            </div>
+        </div>
+
+        <div class="aviso revelar">
+            <strong>⚠️ Atención con las falsas emergencias</strong>
+            <p>Si alguien te llama diciendo que un familiar está en peligro y exige dinero inmediatamente, cuelga y comunícate directamente con ese familiar mediante un número conocido. No hagas transferencias hasta verificar lo sucedido.</p>
+        </div>
+    </div>
+</section>
+
+<!-- NIÑOS -->
+<section id="ninos">
+    <div class="contenedor">
+        <div class="encabezado-seccion revelar">
+            <span class="etiqueta">Aprender también es protegerse</span>
+            <h2>Ciberseguridad para niños</h2>
+            <p>Los niños utilizan celulares y tabletas para jugar, estudiar y comunicarse. La orientación de madres, padres y cuidadores es fundamental.</p>
+        </div>
+        <div class="dos-columnas">
+            <div class="texto revelar">
+                <h3>Reglas sencillas para pequeños usuarios</h3>
+                <p>La seguridad digital debe enseñarse con paciencia, ejemplos claros y conversaciones abiertas. Los niños deben saber que siempre pueden pedir ayuda a un adulto de confianza.</p>
+                <ul class="lista">
+                    <li>No compartas tu dirección, escuela ni teléfono.</li>
+                    <li>No publiques tu ubicación en tiempo real.</li>
+                    <li>No aceptes solicitudes de desconocidos sin orientación.</li>
+                    <li>No abras enlaces enviados por personas desconocidas.</li>
+                    <li>No compartas fotografías privadas.</li>
+                    <li>Usa cuentas privadas y contraseñas seguras.</li>
+                    <li>No descargues juegos o aplicaciones sin autorización.</li>
+                    <li>Bloquea y reporta a quien te moleste.</li>
+                    <li>Habla con un adulto si recibes amenazas.</li>
+                    <li>Respeta a otras personas en juegos y redes sociales.</li>
+                </ul>
+            </div>
+            <div class="foto-grande-wrap revelar revelar-d2">
+                <img src="https://images.unsplash.com/photo-1503454537195-1dcabb73ffb9?auto=format&fit=crop&w=1000&q=85"
+                     alt="Niño disfrutando de una actividad" loading="lazy">
+            </div>
+        </div>
+
+        <div class="mini-galeria revelar">
+            <div class="mini-img">
+                <img src="https://images.unsplash.com/photo-1543269865-cbf427effbad?auto=format&fit=crop&w=600&q=85" alt="Niños con dispositivos digitales" loading="lazy">
+                <span class="mini-badge seguro">✅ Juntos</span>
+                <div class="mini-label"><small>Compañía</small>Estudiar con amigos</div>
+            </div>
+            <div class="mini-img">
+                <img src="https://images.unsplash.com/photo-1587300003388-59208cc962cb?auto=format&fit=crop&w=600&q=85" alt="Niño jugando videojuegos" loading="lazy">
+                <span class="mini-badge peligro">⚠️ Alerta</span>
+                <div class="mini-label"><small>Juegos</small>No hablar con desconocidos</div>
+            </div>
+            <div class="mini-img">
+                <img src="https://images.unsplash.com/photo-1587691592099-24045742c181?auto=format&fit=crop&w=600&q=85" alt="Niña con tablet" loading="lazy">
+                <span class="mini-badge seguro">✅ Aprender</span>
+                <div class="mini-label"><small>Educación</small>Aprender cosas nuevas</div>
+            </div>
+            <div class="mini-img">
+                <img src="https://images.unsplash.com/photo-1503454537195-1dcabb73ffb9?auto=format&fit=crop&w=600&q=85" alt="Niño feliz con tablet" loading="lazy">
+                <span class="mini-badge seguro">✅ Seguro</span>
+                <div class="mini-label"><small>Supervisión</small>Jugar con un adulto</div>
+            </div>
+        </div>
+
+        <div class="aviso revelar">
+            <strong>💡 Una regla importante para los niños</strong>
+            <p>Si un mensaje, juego o conversación te hace sentir miedo, vergüenza o incomodidad, deja de interactuar y cuéntaselo a un adulto de confianza. No tienes que resolverlo a solas.</p>
+        </div>
+    </div>
+</section>
+
+<!-- RIESGOS -->
+<section class="riesgos" id="riesgos">
+    <div class="contenedor">
+        <div class="encabezado-seccion revelar">
+            <span class="etiqueta">Identifica las señales de alerta</span>
+            <h2>Los principales riesgos digitales</h2>
+            <p>Conocer los riesgos permite tomar mejores decisiones antes de compartir información, descargar archivos o responder a desconocidos.</p>
+        </div>
+        <div class="tarjetas">
+            <article class="tarjeta riesgo revelar">
+                <div class="icono-svg">
+                    <svg viewBox="0 0 200 160" width="160" height="130" xmlns="http://www.w3.org/2000/svg">
+                        <line x1="100" y1="10" x2="100" y2="70" stroke="#0877e8" stroke-width="2"/>
+                        <g class="anzuelo-balancea" style="transform-origin: 100px 10px;">
+                            <path d="M100 70 Q100 100 85 110 Q75 116 78 128 Q82 138 95 135" fill="none" stroke="#c9a961" stroke-width="4" stroke-linecap="round"/>
+                            <rect x="65" y="88" width="70" height="45" rx="4" fill="white" stroke="#0877e8" stroke-width="2"/>
+                            <path d="M65 88 L100 110 L135 88" fill="none" stroke="#0877e8" stroke-width="2"/>
+                            <circle cx="100" cy="100" r="6" fill="#d64568" class="alerta-parpadea"/>
+                        </g>
+                    </svg>
+                </div>
+                <div class="tarjeta-contenido">
+                    <h3>Phishing o suplantación</h3>
+                    <p>Mensajes o páginas falsas que imitan a bancos, empresas o personas conocidas para robar información.</p>
+                    <ul class="lista">
+                        <li>Comprueba el remitente.</li>
+                        <li>No abras enlaces inesperados.</li>
+                        <li>Entra directamente a la página oficial.</li>
+                    </ul>
+                </div>
+            </article>
+            <article class="tarjeta riesgo revelar revelar-d1">
+                <div class="icono-svg" style="background: linear-gradient(135deg, #f5f0ff, #e8ddff);">
+                    <svg viewBox="0 0 200 160" width="160" height="130" xmlns="http://www.w3.org/2000/svg">
+                        <g class="virus-gira" style="transform-origin: 100px 80px;">
+                            <circle cx="100" cy="80" r="35" fill="#d64568" opacity=".9"/>
+                            <circle cx="100" cy="80" r="22" fill="white" opacity=".3"/>
+                            <g stroke="#d64568" stroke-width="3" stroke-linecap="round">
+                                <line x1="100" y1="35" x2="100" y2="15"/>
+                                <line x1="100" y1="125" x2="100" y2="145"/>
+                                <line x1="55" y1="80" x2="35" y2="80"/>
+                                <line x1="145" y1="80" x2="165" y2="80"/>
+                                <line x1="68" y1="48" x2="54" y2="34"/>
+                                <line x1="132" y1="48" x2="146" y2="34"/>
+                                <line x1="68" y1="112" x2="54" y2="126"/>
+                                <line x1="132" y1="112" x2="146" y2="126"/>
+                            </g>
+                            <circle cx="90" cy="75" r="3" fill="white"/>
+                            <circle cx="110" cy="75" r="3" fill="white"/>
+                            <path d="M90 92 Q100 86 110 92" fill="none" stroke="white" stroke-width="2"/>
+                        </g>
+                    </svg>
+                </div>
+                <div class="tarjeta-contenido">
+                    <h3>Virus y apps maliciosas</h3>
+                    <p>Programas que pueden dañar el dispositivo, recopilar información o mostrar publicidad engañosa.</p>
+                    <ul class="lista">
+                        <li>Descarga desde tiendas oficiales.</li>
+                        <li>Revisa los permisos.</li>
+                        <li>Actualiza el sistema.</li>
+                    </ul>
+                </div>
+            </article>
+            <article class="tarjeta riesgo revelar revelar-d2">
+                <div class="icono-svg" style="background: linear-gradient(135deg, #fff5e0, #ffe8b8);">
+                    <svg viewBox="0 0 200 160" width="160" height="130" xmlns="http://www.w3.org/2000/svg">
+                        <g class="persona-flota">
+                            <rect x="40" y="50" width="120" height="75" rx="8" fill="#0877e8" stroke="#102b46" stroke-width="2"/>
+                            <rect x="40" y="68" width="120" height="12" fill="#102b46"/>
+                            <rect x="55" y="95" width="30" height="8" rx="3" fill="#c9a961"/>
+                            <circle cx="150" cy="55" r="16" fill="#e6a92c" stroke="white" stroke-width="2" class="alerta-parpadea"/>
+                            <text x="150" y="62" text-anchor="middle" font-size="20" fill="white" font-weight="bold">!</text>
+                        </g>
+                    </svg>
+                </div>
+                <div class="tarjeta-contenido">
+                    <h3>Fraudes económicos</h3>
+                    <p>Estafas que utilizan premios falsos, inversiones dudosas, compras fraudulentas o emergencias inventadas.</p>
+                    <ul class="lista">
+                        <li>Verifica las ofertas.</li>
+                        <li>No envíes dinero por presión.</li>
+                        <li>Confirma antes de pagar.</li>
+                    </ul>
+                </div>
+            </article>
+            <article class="tarjeta riesgo revelar">
+                <div class="icono-svg" style="background: linear-gradient(135deg, #e8f8f2, #d0f0e3);">
+                    <svg viewBox="0 0 200 160" width="160" height="130" xmlns="http://www.w3.org/2000/svg">
+                        <g class="persona-flota">
+                            <path d="M70 75 L70 60 Q70 35 100 35 Q130 35 130 60 L130 75" fill="none" stroke="#16a085" stroke-width="6" stroke-linecap="round"/>
+                            <rect x="55" y="75" width="90" height="70" rx="10" fill="#16a085" stroke="#102b46" stroke-width="2"/>
+                            <circle cx="100" cy="105" r="8" fill="#c9a961"/>
+                            <rect x="96" y="105" width="8" height="15" fill="#c9a961"/>
+                        </g>
+                    </svg>
+                </div>
+                <div class="tarjeta-contenido">
+                    <h3>Robo de contraseñas</h3>
+                    <p>El acceso no autorizado a una cuenta puede exponer mensajes, fotografías y otros datos personales.</p>
+                    <ul class="lista">
+                        <li>Utiliza contraseñas únicas.</li>
+                        <li>Activa la autenticación en dos pasos.</li>
+                        <li>No compartas códigos de acceso.</li>
+                    </ul>
+                </div>
+            </article>
+            <article class="tarjeta riesgo revelar revelar-d1">
+                <div class="icono-svg" style="background: linear-gradient(135deg, #f0f0ff, #dddfff);">
+                    <svg viewBox="0 0 200 160" width="160" height="130" xmlns="http://www.w3.org/2000/svg">
+                        <g class="persona-flota">
+                            <rect x="30" y="35" width="90" height="35" rx="12" fill="#d64568"/>
+                            <path d="M50 70 L45 85 L65 70" fill="#d64568"/>
+                            <text x="75" y="58" text-anchor="middle" font-size="16" fill="white" font-weight="bold">×</text>
+                            <rect x="90" y="90" width="80" height="32" rx="12" fill="#6b7280"/>
+                            <path d="M155 122 L160 135 L145 122" fill="#6b7280"/>
+                        </g>
+                    </svg>
+                </div>
+                <div class="tarjeta-contenido">
+                    <h3>Ciberacoso</h3>
+                    <p>Amenazas, burlas o humillaciones mediante redes sociales, chats, juegos u otras plataformas.</p>
+                    <ul class="lista">
+                        <li>Conserva pruebas si es seguro.</li>
+                        <li>Bloquea y reporta.</li>
+                        <li>Busca apoyo de confianza.</li>
+                    </ul>
+                </div>
+            </article>
+            <article class="tarjeta riesgo revelar revelar-d2">
+                <div class="icono-svg" style="background: linear-gradient(135deg, #e8f4ff, #d5e8ff);">
+                    <svg viewBox="0 0 200 160" width="160" height="130" xmlns="http://www.w3.org/2000/svg">
+                        <g class="persona-flota">
+                            <path d="M100 30 C 75 30, 60 50, 60 72 C 60 95, 100 130, 100 130 C 100 130, 140 95, 140 72 C 140 50, 125 30, 100 30 Z"
+                                  fill="#d64568" stroke="#102b46" stroke-width="2"/>
+                            <circle cx="100" cy="70" r="16" fill="white"/>
+                            <path d="M85 70 Q100 58 115 70 Q100 82 85 70 Z" fill="#102b46"/>
+                            <circle cx="100" cy="70" r="4" fill="white"/>
+                        </g>
+                    </svg>
+                </div>
+                <div class="tarjeta-contenido">
+                    <h3>Pérdida de privacidad</h3>
+                    <p>Publicar demasiada información puede revelar dónde estás, dónde estudias o tus rutinas.</p>
+                    <ul class="lista">
+                        <li>Limita el acceso a tu perfil.</li>
+                        <li>Desactiva la ubicación innecesaria.</li>
+                        <li>Piensa antes de publicar.</li>
+                    </ul>
+                </div>
+            </article>
+        </div>
+    </div>
+</section>
+
+<!-- CONSEJOS -->
+<section class="fondo-blanco" id="consejos">
+    <div class="contenedor">
+        <div class="encabezado-seccion revelar">
+            <span class="etiqueta">Hábitos que hacen la diferencia</span>
+            <h2>10 consejos para proteger tu celular</h2>
+            <p>Estas recomendaciones son útiles para todas las edades y ayudan a reducir los riesgos al utilizar dispositivos móviles.</p>
+        </div>
+        <div class="pasos">
+            <article class="paso revelar"><div class="numero">1</div><h3>Contraseñas seguras</h3><p>Usa claves largas, únicas y difíciles de adivinar.</p></article>
+            <article class="paso revelar revelar-d1"><div class="numero">2</div><h3>Actualizaciones</h3><p>Instala las actualizaciones disponibles del sistema.</p></article>
+            <article class="paso revelar revelar-d2"><div class="numero">3</div><h3>Verificación doble</h3><p>Activa un segundo paso de seguridad en tus cuentas.</p></article>
+            <article class="paso revelar revelar-d3"><div class="numero">4</div><h3>Bloqueo de pantalla</h3><p>Configura un PIN seguro o un método de bloqueo adecuado.</p></article>
+            <article class="paso revelar"><div class="numero">5</div><h3>Aplicaciones oficiales</h3><p>Evita instalar archivos de fuentes desconocidas.</p></article>
+            <article class="paso revelar revelar-d1"><div class="numero">6</div><h3>Permisos necesarios</h3><p>Limita el acceso a cámara, micrófono y ubicación.</p></article>
+            <article class="paso revelar revelar-d2"><div class="numero">7</div><h3>Redes seguras</h3><p>Evita operaciones sensibles en redes públicas dudosas.</p></article>
+            <article class="paso revelar revelar-d3"><div class="numero">8</div><h3>Copias de seguridad</h3><p>Guarda tus archivos importantes en un lugar seguro.</p></article>
+            <article class="paso revelar"><div class="numero">9</div><h3>Revisa los enlaces</h3><p>Verifica el destino antes de ingresar información.</p></article>
+            <article class="paso revelar revelar-d1"><div class="numero">10</div><h3>Pide ayuda</h3><p>Consulta a alguien de confianza ante una situación sospechosa.</p></article>
+        </div>
+    </div>
+</section>
+
+<!-- TEST -->
+<section class="quiz-seccion" id="quiz">
+    <div class="contenedor">
+        <div class="encabezado-seccion revelar">
+            <span class="etiqueta">Pon a prueba lo que sabes</span>
+            <h2>🎯 Test de ciberseguridad</h2>
+            <p>Responde estas 7 preguntas y descubre qué tan preparado estás para protegerte en Internet. ¡Cada respuesta te dará una pista!</p>
+        </div>
+        <div class="quiz-caja revelar">
+            <div class="quiz-header">
+                <span id="quizContador">Pregunta 1 de 7</span>
+                <span id="quizPuntaje">⭐ 0 aciertos</span>
+            </div>
+            <div class="quiz-progreso-barra">
+                <div class="quiz-progreso-fill" id="quizProgresoFill"></div>
+            </div>
+            <div id="quizContenido"></div>
+        </div>
+    </div>
+</section>
+
+<!-- FAMILIA -->
+<section class="familia">
+    <div class="contenedor">
+        <div class="encabezado-seccion revelar">
+            <span class="etiqueta" style="color:#7ef0d9">La prevención empieza en casa</span>
+            <h2>Una familia informada es una familia más segura</h2>
+            <p>La tecnología debe unirnos, no aislarnos. La educación, el acompañamiento y el respeto ayudan a prevenir muchos problemas relacionados con el uso de Internet.</p>
+        </div>
+        <div class="tarjetas">
+            <article class="tarjeta revelar">
+                <div class="tarjeta-img-wrap">
+                    <img src="https://images.unsplash.com/photo-1491013516836-7db643ee125a?auto=format&fit=crop&w=800&q=80" alt="Adulto con niño" loading="lazy">
+                </div>
+                <div class="tarjeta-contenido">
+                    <h3>Orientación para padres</h3>
+                    <p>Establece acuerdos sobre el uso del celular, los videojuegos, las aplicaciones y los horarios. Utiliza controles parentales apropiados para la edad.</p>
+                </div>
+            </article>
+            <article class="tarjeta revelar revelar-d1">
+                <div class="tarjeta-img-wrap">
+                    <img src="https://images.unsplash.com/photo-1516307365426-bea591f05011?auto=format&fit=crop&w=800&q=80" alt="Persona mayor" loading="lazy">
+                </div>
+                <div class="tarjeta-contenido">
+                    <h3>Acompañamiento a mayores</h3>
+                    <p>Enseña paso a paso cómo realizar videollamadas, reconocer mensajes falsos, proteger cuentas y consultar información en páginas confiables.</p>
+                </div>
+            </article>
+            <article class="tarjeta revelar revelar-d2">
+                <div class="tarjeta-img-wrap">
+                    <img src="https://images.unsplash.com/photo-1511632765486-a01980e01a18?auto=format&fit=crop&w=800&q=80" alt="Familia unida" loading="lazy">
+                </div>
+                <div class="tarjeta-contenido">
+                    <h3>Acuerdos familiares</h3>
+                    <p>Definan reglas claras, hablen de las experiencias en Internet y acuerden cómo actuar si alguien recibe amenazas, engaños o solicitudes de información.</p>
+                </div>
+            </article>
+        </div>
+    </div>
+</section>
+
+<!-- FAQ -->
+<section id="preguntas">
+    <div class="contenedor">
+        <div class="encabezado-seccion revelar">
+            <span class="etiqueta">Resolvemos tus dudas</span>
+            <h2>Preguntas frecuentes</h2>
+            <p>Respuestas prácticas para actuar con más confianza cuando utilizas tu celular.</p>
+        </div>
+        <div class="faq">
+            <details class="revelar"><summary>¿Qué debo hacer si recibo un mensaje sospechoso?</summary><p>No respondas, no descargues archivos y no abras los enlaces. Verifica la información a través de la página o aplicación oficial de la organización.</p></details>
+            <details class="revelar"><summary>¿Cómo puedo saber si una aplicación es confiable?</summary><p>Revisa su desarrollador, las reseñas, los permisos que solicita y su disponibilidad en una tienda oficial. Evita instalar archivos enviados por desconocidos.</p></details>
+            <details class="revelar"><summary>¿Qué hago si compartí mis datos bancarios?</summary><p>Comunícate inmediatamente con tu banco usando sus canales oficiales. Solicita ayuda para proteger tus cuentas, cambiar credenciales y reportar operaciones desconocidas.</p></details>
+            <details class="revelar"><summary>¿Los niños pueden usar redes sociales?</summary><p>Deben respetarse las edades mínimas y condiciones de cada plataforma. Las madres, los padres y cuidadores deben acompañarlos de acuerdo con su edad y madurez.</p></details>
+            <details class="revelar"><summary>¿Es suficiente instalar un antivirus?</summary><p>No. También es importante actualizar el dispositivo, descargar aplicaciones confiables, proteger las cuentas y evitar compartir información con desconocidos.</p></details>
+            <details class="revelar"><summary>¿Qué hago si un niño recibe amenazas en Internet?</summary><p>Escúchalo sin culparlo, conserva las pruebas cuando sea seguro, bloquea y reporta la cuenta y busca apoyo de la escuela, de profesionales o de las autoridades cuando la situación lo requiera.</p></details>
+        </div>
+    </div>
+</section>
+
+<!-- FINAL -->
+<section class="contacto" id="contacto">
+    <div class="contenedor">
+        <div class="final revelar">
+            <span class="etiqueta">Comparte lo que aprendiste</span>
+            <h2>¡Juntos podemos construir un Internet más seguro!</h2>
+            <p>Habla con tus familiares, comparte estos consejos y ayuda a que más personas aprendan a proteger su información. La prevención comienza con pequeñas acciones todos los días.</p>
+            <a class="boton" href="#inicio">Volver al inicio ↑</a>
+        </div>
+    </div>
+</section>
+
+</main>
+
+<footer>
+    <div class="contenedor">
+        <div class="footer-grid">
+            <div>
+                <strong style="font-size:22px">🛡️ CiberSegura</strong>
+                <p>Un espacio informativo para aprender a usar los dispositivos móviles de manera responsable y segura.</p>
+            </div>
+            <div>
+                <h3>Secciones</h3>
+                <ul>
+                    <li><a href="#video">Video</a></li>
+                    <li><a href="#ejemplos">Ejemplos animados</a></li>
+                    <li><a href="#adultos">Adultos mayores</a></li>
+                    <li><a href="#ninos">Seguridad infantil</a></li>
+                    <li><a href="#quiz">Test interactivo</a></li>
+                </ul>
+            </div>
+            <div>
+                <h3>Recuerda</h3>
+                <p>🔐 Protege tus datos.</p>
+                <p>🔎 Verifica antes de confiar.</p>
+                <p>🤝 Pide ayuda cuando la necesites.</p>
+            </div>
+        </div>
+        <div class="copyright">
+            © <span id="anio"></span> CiberSegura | Proyecto educativo de ciberseguridad.
+        </div>
+    </div>
+</footer>
+
+<button id="subir" aria-label="Volver al inicio">↑</button>
+
+<script>
+/* MENÚ */
+const menuBtn = document.getElementById("menuBtn");
+const menu = document.getElementById("menu");
+const subir = document.getElementById("subir");
+
+menuBtn.addEventListener("click", function () {
+    const abierto = menu.classList.toggle("activo");
+    menuBtn.setAttribute("aria-expanded", abierto);
+    menuBtn.setAttribute("aria-label", abierto ? "Cerrar menú" : "Abrir menú");
+    menuBtn.textContent = abierto ? "✕" : "☰";
+});
+menu.querySelectorAll("a").forEach(function (enlace) {
+    enlace.addEventListener("click", function () {
+        menu.classList.remove("activo");
+        menuBtn.setAttribute("aria-expanded", "false");
+        menuBtn.textContent = "☰";
+    });
+});
+
+/* PROGRESO + SUBIR */
+const barraProgreso = document.getElementById("progreso");
+window.addEventListener("scroll", function () {
+    const y = window.scrollY;
+    subir.style.display = y > 350 ? "block" : "none";
+    const total = document.documentElement.scrollHeight - window.innerHeight;
+    barraProgreso.style.width = (y / total) * 100 + "%";
+});
+subir.addEventListener("click", function () {
+    window.scrollTo({top: 0, behavior: "smooth"});
+});
+document.getElementById("anio").textContent = new Date().getFullYear();
+
+/* REVELAR AL SCROLL */
+const obs = new IntersectionObserver(function (entradas) {
+    entradas.forEach(function (e) {
+        if (e.isIntersecting) {
+            e.target.classList.add("visible");
+            obs.unobserve(e.target);
+        }
+    });
+}, { threshold: 0.12, rootMargin: "0px 0px -50px 0px" });
+document.querySelectorAll(".revelar, .foto-grande-wrap").forEach(function (el) {
+    obs.observe(el);
+});
+
+/* PARALLAX HERO */
+const heroWrap = document.querySelector("[data-parallax]");
+const heroImg = heroWrap ? heroWrap.querySelector("img") : null;
+if (heroWrap && heroImg && window.matchMedia("(hover: hover)").matches) {
+    heroWrap.addEventListener("mousemove", function (e) {
+        const r = heroWrap.getBoundingClientRect();
+        const x = (e.clientX - r.left) / r.width - 0.5;
+        const y = (e.clientY - r.top) / r.height - 0.5;
+        heroImg.style.transform = "scale(1.1) translate(" + (x * -14) + "px, " + (y * -14) + "px)";
+        heroImg.style.animationPlayState = "paused";
+    });
+    heroWrap.addEventListener("mouseleave", function () {
+        heroImg.style.transform = "";
+        heroImg.style.animationPlayState = "";
+    });
+}
+
+/* PARTÍCULAS HERO */
+if (heroWrap) {
+    for (let i = 0; i < 15; i++) {
+        const p = document.createElement("div");
+        p.className = "particula";
+        p.style.left = Math.random() * 100 + "%";
+        p.style.bottom = "-10px";
+        p.style.setProperty("--dx", (Math.random() * 60 - 30) + "px");
+        p.style.animationDuration = (Math.random() * 8 + 6) + "s";
+        p.style.animationDelay = Math.random() * 8 + "s";
+        p.style.width = p.style.height = (Math.random() * 4 + 2) + "px";
+        heroWrap.appendChild(p);
+    }
+}
+
+/* TEST DE PREGUNTAS */
+const preguntas = [
+    {
+        pregunta: "Recibes un mensaje del 'banco' pidiendo tu contraseña. ¿Qué haces?",
+        opciones: [
+            "Enviar la contraseña rápido para que no bloqueen la cuenta",
+            "No responder y verificar llamando al banco por un número oficial",
+            "Dar clic en el enlace que viene en el mensaje"
+        ],
+        correcta: 1,
+        explicacion: "Los bancos NUNCA piden contraseñas por mensaje ni por teléfono. Siempre verifica por canales oficiales."
+    },
+    {
+        pregunta: "¿Cuál de estas contraseñas es la MÁS segura?",
+        opciones: ["12345678", "MiCumple2000", "S0f1a#Verde$2024!"],
+        correcta: 2,
+        explicacion: "Una buena contraseña combina mayúsculas, minúsculas, números y símbolos. Y no es información personal."
+    },
+    {
+        pregunta: "Un desconocido en un videojuego te pide tu WhatsApp para 'ser amigos'. ¿Qué haces?",
+        opciones: [
+            "Le doy mi número para que seamos amigos",
+            "No lo comparto y le cuento a un adulto de confianza",
+            "Le doy solo el nombre de mi colonia"
+        ],
+        correcta: 1,
+        explicacion: "Nunca compartas datos personales con desconocidos en Internet. Avísale siempre a un adulto de confianza."
+    },
+    {
+        pregunta: "¿Qué es el 'phishing'?",
+        opciones: [
+            "Un juego de pesca en línea",
+            "Mensajes falsos que imitan empresas para robar tus datos",
+            "Una red social para niños"
+        ],
+        correcta: 1,
+        explicacion: "El phishing imita a bancos, tiendas o personas conocidas para engañarte y robar tu información."
+    },
+    {
+        pregunta: "Tu abuelita recibe una llamada: 'Su nieto está en problemas, deposite dinero urgente'. ¿Qué debe hacer?",
+        opciones: [
+            "Transferir el dinero rápido para ayudar",
+            "Colgar y llamar a su nieto con el número que ya tiene guardado",
+            "Dar sus datos bancarios por teléfono para verificar"
+        ],
+        correcta: 1,
+        explicacion: "Es una estafa muy común. Siempre hay que colgar y verificar llamando directamente a la persona."
+    },
+    {
+        pregunta: "¿Qué opción te da MÁS seguridad en tus cuentas?",
+        opciones: [
+            "Activar la ubicación en tiempo real en todas las apps",
+            "Activar la verificación en dos pasos (2FA)",
+            "Compartir tu contraseña solo con tus mejores amigos"
+        ],
+        correcta: 1,
+        explicacion: "La verificación en dos pasos añade una capa extra de seguridad: aunque roben tu contraseña, no podrán entrar fácilmente."
+    },
+    {
+        pregunta: "Un niño recibe mensajes hirientes en un chat escolar. ¿Cuál es la mejor acción?",
+        opciones: [
+            "Responder con mensajes igual de fuertes",
+            "Guardar capturas, bloquear, reportar y contarle a un adulto",
+            "Borrar todo y no decir nada a nadie"
+        ],
+        correcta: 1,
+        explicacion: "Nunca respondas con violencia. Guarda pruebas, bloquea, reporta y busca apoyo de un adulto de confianza."
+    }
+];
+
+let indiceActual = 0;
+let aciertos = 0;
+let respondida = false;
+
+const contador = document.getElementById("quizContador");
+const puntajeEl = document.getElementById("quizPuntaje");
+const progresoFill = document.getElementById("quizProgresoFill");
+const quizContenido = document.getElementById("quizContenido");
+
+function mostrarPregunta() {
+    respondida = false;
+    const p = preguntas[indiceActual];
+    contador.textContent = `Pregunta ${indiceActual + 1} de ${preguntas.length}`;
+    puntajeEl.textContent = `⭐ ${aciertos} acierto${aciertos === 1 ? "" : "s"}`;
+    progresoFill.style.width = ((indiceActual) / preguntas.length) * 100 + "%";
+
+    const letras = ["A", "B", "C"];
+
+    quizContenido.innerHTML = `
+        <div class="quiz-pregunta">${p.pregunta}</div>
+        <div class="quiz-opciones" id="opciones">
+            ${p.opciones.map((op, i) => `
+                <button class="quiz-opcion" data-index="${i}">
+                    <span class="letra">${letras[i]}</span>
+                    <span>${op}</span>
+                </button>
+            `).join("")}
+        </div>
+        <div class="quiz-feedback" id="feedback"></div>
+        <div class="quiz-footer">
+            <button class="quiz-btn" id="btnSiguiente" disabled>Siguiente →</button>
+        </div>
+    `;
+
+    const botones = quizContenido.querySelectorAll(".quiz-opcion");
+    botones.forEach(btn => {
+        btn.addEventListener("click", () => seleccionar(btn, botones));
+    });
+
+    document.getElementById("btnSiguiente").addEventListener("click", siguiente);
+}
+
+function seleccionar(btn, botones) {
+    if (respondida) return;
+    respondida = true;
+
+    const elegido = parseInt(btn.dataset.index);
+    const correcta = preguntas[indiceActual].correcta;
+    const feedback = document.getElementById("feedback");
+    const btnSig = document.getElementById("btnSiguiente");
+
+    botones.forEach(b => b.disabled = true);
+
+    if (elegido === correcta) {
+        btn.classList.add("correcta");
+        aciertos++;
+        puntajeEl.textContent = `⭐ ${aciertos} acierto${aciertos === 1 ? "" : "s"}`;
+        feedback.className = "quiz-feedback ok";
+        feedback.innerHTML = `<strong>✅ ¡Correcto! ¡Excelente!</strong>${preguntas[indiceActual].explicacion}`;
+        lanzarMiniConfeti();
+    } else {
+        btn.classList.add("incorrecta");
+        botones[correcta].classList.add("correcta");
+        feedback.className = "quiz-feedback error";
+        feedback.innerHTML = `<strong>❌ Ups, la respuesta correcta era la ${["A","B","C"][correcta]}.</strong>${preguntas[indiceActual].explicacion}`;
+    }
+
+    btnSig.disabled = false;
+    btnSig.textContent = indiceActual === preguntas.length - 1
+        ? "Ver resultado 🏁"
+        : "Siguiente →";
+}
+
+function siguiente() {
+    indiceActual++;
+    if (indiceActual < preguntas.length) {
+        mostrarPregunta();
+    } else {
+        mostrarFinal();
+    }
+}
+
+function mostrarFinal() {
+    progresoFill.style.width = "100%";
+    contador.textContent = "¡Completado!";
+
+    const total = preguntas.length;
+    const porcentaje = Math.round((aciertos / total) * 100);
+
+    let emoji = "🎉";
+    let titulo = "¡Excelente!";
+    let mensaje = "Eres todo un experto en ciberseguridad. ¡Comparte lo que sabes con tu familia!";
+    let estrellas = "⭐⭐⭐⭐⭐";
+
+    if (porcentaje < 50) {
+        emoji = "🤔";
+        titulo = "¡Sigue aprendiendo!";
+        mensaje = "Repasa los consejos de esta página y vuelve a intentarlo. ¡Tú puedes!";
+        estrellas = "⭐";
+    } else if (porcentaje < 70) {
+        emoji = "👏";
+        titulo = "¡Buen trabajo!";
+        mensaje = "Vas por buen camino. Revisa las respuestas y sigue practicando.";
+        estrellas = "⭐⭐⭐";
+    } else if (porcentaje < 90) {
+        emoji = "🌟";
+        titulo = "¡Muy bien!";
+        mensaje = "Casi perfecto. Ya sabes protegerte en Internet, sigue así.";
+        estrellas = "⭐⭐⭐⭐";
+    }
+
+    quizContenido.innerHTML = `
+        <div class="quiz-final">
+            <div class="emoji">${emoji}</div>
+            <h3>${titulo}</h3>
+            <div class="estrella-puntaje">${estrellas}</div>
+            <div class="puntaje">${aciertos}/${total}</div>
+            <p>${mensaje}</p>
+            <button class="quiz-btn reiniciar" id="btnReiniciar">🔄 Volver a intentar</button>
+        </div>
+    `;
+
+    document.getElementById("btnReiniciar").addEventListener("click", reiniciarQuiz);
+
+    if (porcentaje >= 50) {
+        lanzarConfeti();
+    }
+}
+
+function reiniciarQuiz() {
+    indiceActual = 0;
+    aciertos = 0;
+    mostrarPregunta();
+}
+
+function lanzarConfeti() {
+    const colores = ["#0877e8", "#2ba98f", "#c9a961", "#e3c88a", "#d64568", "#e07a91", "#16a085"];
+    const cantidad = 100;
+    for (let i = 0; i < cantidad; i++) {
+        setTimeout(() => {
+            const c = document.createElement("div");
+            c.className = "confeti";
+            c.style.left = Math.random() * 100 + "vw";
+            c.style.background = colores[Math.floor(Math.random() * colores.length)];
+            c.style.width = (Math.random() * 10 + 6) + "px";
+            c.style.height = (Math.random() * 10 + 6) + "px";
+            c.style.borderRadius = Math.random() > 0.5 ? "50%" : "2px";
+            const duracion = Math.random() * 2.5 + 2.5;
+            c.style.animationDuration = duracion + "s";
+            document.body.appendChild(c);
+            setTimeout(() => c.remove(), duracion * 1000 + 100);
+        }, i * 25);
+    }
+}
+
+function lanzarMiniConfeti() {
+    const colores = ["#2ba98f", "#c9a961", "#e3c88a"];
+    const cantidad = 25;
+    for (let i = 0; i < cantidad; i++) {
+        setTimeout(() => {
+            const c = document.createElement("div");
+            c.className = "confeti";
+            c.style.left = Math.random() * 100 + "vw";
+            c.style.background = colores[Math.floor(Math.random() * colores.length)];
+            c.style.width = (Math.random() * 8 + 5) + "px";
+            c.style.height = (Math.random() * 8 + 5) + "px";
+            c.style.borderRadius = Math.random() > 0.5 ? "50%" : "2px";
+            const duracion = Math.random() * 1.5 + 1.5;
+            c.style.animationDuration = duracion + "s";
+            document.body.appendChild(c);
+            setTimeout(() => c.remove(), duracion * 1000 + 100);
+        }, i * 20);
+    }
+}
+
+mostrarPregunta();
+</script>
+
+</body>
+</html>
